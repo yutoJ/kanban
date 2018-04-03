@@ -18,3 +18,7 @@ yarn-debug.log*
 
 # env setting
 .env
+
+#
+.DS_Store
+report.html
