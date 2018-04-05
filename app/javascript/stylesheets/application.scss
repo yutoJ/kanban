@@ -1,5 +1,52 @@
 @import '~bootstrap/scss/bootstrap';
 
+body {
+  color: #565a5c;
+  background-color: #FFF;
+  font-family: "Varela Round", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.container {
+  width: 80%;
+}
+
 .red-text {
   color: red;
+}
+
+// btn
+.btn.btn-facebook {
+  color: white;
+  border: 1px solid #3B5998;
+  background-color: #3B5998;
+}
+
+.btn.btn-facebook:active {
+  outline: none;
+  border-color: #2d467b;
+  background-color: #2d467b;
+}
+
+.btn.btn-twitter {
+  color: white;
+  border: 1px solid #1dcaff;
+  background-color: #1dcaff;
+}
+
+.btn.btn-twitter:active {
+  outline: none;
+  border-color: #00aced;
+  background-color: #00aced;
+}
+
+.btn.btn-github {
+  color: white;
+  border: 1px solid #767676;
+  background-color: #767676;
+}
+
+.btn.btn-github:active {
+  outline: none;
+  border-color: #333;
+  background-color: #333;
 }
