@@ -1,7 +1,8 @@
 @import '~bootstrap/scss/bootstrap'; // scss-lint:disable StringQuotes
 
 // colors
-$whole-color:#565a5c;
+$default-letter-color:#565a5c;
+$default-bk-color:#fff;
 $default-button-letter:#fff;
 $default-alert-letter:#f00;
 // colors.sns
@@ -15,8 +16,8 @@ $github-button:#767676;
 $github-button-active:#333;
 
 body {
-  background-color: $pure-white;
-  color: $whole-color;
+  background-color: $default-bk-color;
+  color: $default-letter-color;
   font-family: "Varela Round", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 

@@ -17,6 +17,9 @@ gem 'webpacker', '~> 3.2.1'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+# auth
+gem 'devise'
+gem 'omniauth-facebook'
 # non-functional
 gem 'dotenv-rails'
 # template engine
