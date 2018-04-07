@@ -1,3 +1,66 @@
+@import '~bootstrap/scss/bootstrap'; // scss-lint:disable StringQuotes
+
+// colors
+$whole-color:#565a5c;
+$default-button-letter:#fff;
+$default-alert-letter:#f00;
+// colors.sns
+$facebook-button:#3b5998;
+$facebook-button-active:#2d467b;
+
+$twitter-button:#1dcaff;
+$twitter-button-active:#00aced;
+
+$github-button:#767676;
+$github-button-active:#333;
+
+body {
+  background-color: $pure-white;
+  color: $whole-color;
+  font-family: "Varela Round", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.container {
+  width: 80%;
+}
+
 .red-text {
-  color: red;
+  color: $default-alert-letter;
+}
+
+// sns btn
+.btn.btn-facebook {
+  background-color: $facebook-button;
+  border: 1px solid $facebook-button;
+  color: $default-button-letter;
+}
+
+.btn.btn-facebook:active {
+  background-color: $facebook-button-active;
+  border-color: $facebook-button-active;
+  outline: none;
+}
+
+.btn.btn-twitter {
+  background-color: $twitter-button;
+  border: 1px solid $twitter-button;
+  color: $default-button-letter;
+}
+
+.btn.btn-twitter:active {
+  background-color: $twitter-button-active;
+  border-color: $twitter-button-active;
+  outline: none;
+}
+
+.btn.btn-github {
+  background-color: $github-button;
+  border: 1px solid $github-button;
+  color: $default-button-letter;
+}
+
+.btn.btn-github:active {
+  background-color: $github-button-active;
+  border-color: $github-button-active;
+  outline: none;
 }
