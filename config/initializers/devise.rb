@@ -17,6 +17,5 @@ Devise.setup do |config|
   config.sign_out_via = :delete
 
   # ==> OmniAuth
-  config.omniauth :facebook, 'App ID', 'App Secret'
   config.omniauth :facebook, ENV['FACEBOOK_AUTH_ID'], ENV['FACEBOOK_AUTH_ID_SECRET']
 end
