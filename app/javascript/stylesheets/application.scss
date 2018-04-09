@@ -1,10 +1,12 @@
 @import '~bootstrap/scss/bootstrap'; // scss-lint:disable StringQuotes
 
-// colors
+// colors.general
 $default-letter-color:#565a5c;
 $default-bk-color:#fff;
 $default-button-letter:#fff;
 $default-alert-letter:#f00;
+// colors.parts
+$flash-message-bk:#7fff00;
 // colors.sns
 $facebook-button:#3b5998;
 $facebook-button-active:#2d467b;
@@ -27,6 +29,11 @@ body {
 
 .red-text {
   color: $default-alert-letter;
+}
+
+.flash-massage {
+  background-color: $flash-message-bk;
+  color: $default-letter-color;
 }
 
 // sns btn

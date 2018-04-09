@@ -1,24 +1,35 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController # rubocop:disable Style/ClassAndModuleChildren
   def facebook
-    callback_from :facebook
+    callback_from 'facebook'
   end
 
   def twitter
-    callback_from :twitter
+    callback_from 'twitter'
   end
 
   private
 
   def callback_from(provider)
-    provider = provider.to_s
-    if provider == 'facebook' then @user = User.find_or_create_fb_oauth(request.env['omniauth.auth']) end
-    if provider == 'twitter' then @user = User.find_or_create_tw_oauth(request.env['omniauth.auth']) end
+    auth = request.env['omniauth.auth']
+    @user = User.find_for_auth(auth)
+    if @user
+      set_flash_message(:notice, :signed_in) if is_navigational_format?
+      sign_in_and_redirect @user, event: :authentication
+      return
+    end
+    @user = create_auth_acount(auth)
     if @user.persisted?
-      set_flash_message(:notice, :success, kind: provider.capitalize) if is_navigational_format?
+      set_flash_message(:notice, :signed_up, kind: provider.capitalize) if is_navigational_format?
       sign_in_and_redirect @user, event: :authentication
     else
-      session["devise.#{provider}_data"] = request.env['omniauth.auth']
+      session["devise.#{provider}_data"] = auth
       redirect_to login_path
     end
+  end
+
+  def create_auth_acount(auth)
+    user = User.create_fb_auth(auth) if auth.provider == 'facebook'
+    user = User.create_tw_auth(auth) if auth.provider == 'twitter'
+    user
   end
 end

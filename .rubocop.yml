@@ -27,3 +27,6 @@ Rails/UnknownEnv:
 
 Metrics/AbcSize:
   Max: 30
+
+Metrics/MethodLength:
+  Max: 15

@@ -3,9 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :validatable, :rememberable, :trackable, :omniauthable, omniauth_providers: %i[facebook twitter]
 
-  def self.find_or_create_fb_oauth(auth)
+  def self.find_for_auth(auth)
     user = User.find_by(provider: auth.provider, uid: auth.uid)
-    user ||= User.create(
+    user
+  end
+
+  def self.create_fb_auth(auth)
+    user = User.create(
       name:      auth.extra.raw_info.name,
       uid:       auth.uid,
       provider:  auth.provider,
@@ -16,9 +20,8 @@ class User < ApplicationRecord
     user
   end
 
-  def self.find_or_create_tw_oauth(auth)
-    user = User.find_by(provider: auth.provider, uid: auth.uid)
-    user ||= User.create(
+  def self.create_tw_auth(auth)
+    user = User.create(
       name:      auth.info.nickname,
       uid:       auth.uid,
       provider:  auth.provider,
