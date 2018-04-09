@@ -9,9 +9,7 @@ class User < ApplicationRecord
       name:      auth.extra.raw_info.name,
       uid:       auth.uid,
       provider:  auth.provider,
-      email:     auth.info.email ||= "#{auth.uid}-#{auth.provider}@example.com",
-      sns_image: auth.info.image,
-      password:  Devise.friendly_token[0, 20]
+      sns_image: auth.info.image
     )
     user
   end
@@ -22,9 +20,7 @@ class User < ApplicationRecord
       name:      auth.info.nickname,
       uid:       auth.uid,
       provider:  auth.provider,
-      email:     auth.info.email ||= "#{auth.uid}-#{auth.provider}@example.com",
-      sns_image: auth.info.image,
-      password:  Devise.friendly_token[0, 20]
+      sns_image: auth.info.image
     )
     user
   end
