@@ -7,6 +7,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController #
     callback_from 'twitter'
   end
 
+  def github
+    callback_from 'github'
+  end
+
   private
 
   def callback_from(provider)
@@ -30,6 +34,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController #
   def create_auth_acount(auth)
     user = User.create_fb_auth(auth) if auth.provider == 'facebook'
     user = User.create_tw_auth(auth) if auth.provider == 'twitter'
+    user = User.create_gh_auth(auth) if auth.provider == 'github'
     user
   end
 end
