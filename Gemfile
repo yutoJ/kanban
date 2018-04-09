@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 # non-functional
 gem 'dotenv-rails'
 # template engine
@@ -30,6 +31,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'byebug'
+  gem 'pry-rails'
 end
 
 group :development do
