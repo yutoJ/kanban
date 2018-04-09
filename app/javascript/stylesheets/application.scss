@@ -1,9 +1,12 @@
 @import '~bootstrap/scss/bootstrap'; // scss-lint:disable StringQuotes
 
-// colors
-$whole-color:#565a5c;
+// colors.general
+$default-letter-color:#565a5c;
+$default-bk-color:#fff;
 $default-button-letter:#fff;
 $default-alert-letter:#f00;
+// colors.parts
+$flash-message-bk:#7fff00;
 // colors.sns
 $facebook-button:#3b5998;
 $facebook-button-active:#2d467b;
@@ -15,8 +18,8 @@ $github-button:#767676;
 $github-button-active:#333;
 
 body {
-  background-color: $pure-white;
-  color: $whole-color;
+  background-color: $default-bk-color;
+  color: $default-letter-color;
   font-family: "Varela Round", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
@@ -26,6 +29,11 @@ body {
 
 .red-text {
   color: $default-alert-letter;
+}
+
+.flash-massage {
+  background-color: $flash-message-bk;
+  color: $default-letter-color;
 }
 
 // sns btn

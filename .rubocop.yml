@@ -24,3 +24,9 @@ Metrics/LineLength:
 Rails/UnknownEnv:
   Environments:
     - staging
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/MethodLength:
+  Max: 15

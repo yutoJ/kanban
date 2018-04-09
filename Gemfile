@@ -17,6 +17,12 @@ gem 'webpacker', '~> 3.2.1'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+# auth
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-github'
 # non-functional
 gem 'dotenv-rails'
 # template engine
@@ -26,6 +32,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'byebug'
+  gem 'pry-rails'
 end
 
 group :development do
