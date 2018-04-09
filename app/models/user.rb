@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :validatable, :rememberable, :trackable, :omniauthable, omniauth_providers: %i[facebook twitter]
+  devise :rememberable, :trackable, :omniauthable, omniauth_providers: %i[facebook twitter]
 
   def self.find_or_create_fb_oauth(auth)
     user = User.find_by(provider: auth.provider, uid: auth.uid)
