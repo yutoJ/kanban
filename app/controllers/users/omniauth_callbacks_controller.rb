@@ -14,7 +14,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController #
     if provider == 'facebook' then @user = User.find_or_create_fb_oauth(request.env['omniauth.auth']) end
     if provider == 'twitter' then @user = User.find_or_create_tw_oauth(request.env['omniauth.auth']) end
     if @user.persisted?
-      flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: provider.capitalize)
+      set_flash_message(:notice, :success, kind: provider.capitalize) if is_navigational_format?
       sign_in_and_redirect @user, event: :authentication
     else
       session["devise.#{provider}_data"] = request.env['omniauth.auth']
