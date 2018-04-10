@@ -5,6 +5,9 @@ $default-letter-color:#565a5c;
 $default-bk-color:#fff;
 $default-button-letter:#fff;
 $default-alert-letter:#f00;
+// color.myoage
+$gradation-p1-1:#fbab7e;
+$gradation-p1-2:#f1ce68;
 // colors.parts
 $flash-message-bk:#7fff00;
 // colors.sns
@@ -25,6 +28,16 @@ body {
 
 .container {
   width: 80%;
+}
+
+.avatar-small {
+  height: 40px;
+  width: 40px;
+}
+
+.avatar-normal {
+  height: 150px;
+  width: 150px;
 }
 
 .red-text {
@@ -71,4 +84,9 @@ body {
   background-color: $github-button-active;
   border-color: $github-button-active;
   outline: none;
+}
+
+.name-label {
+  background-color: $gradation-p1-1;
+  background-image: linear-gradient(62deg, $gradation-p1-1 0%, $gradation-p1-2 100%);
 }
