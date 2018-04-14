@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :rememberable, :trackable, :omniauthable, omniauth_providers: %i[facebook twitter github]
+
+  mount_uploader :profile_image, ProfileImageUploader
 
   def self.find_for_auth(auth)
     user = User.find_by(provider: auth.provider, uid: auth.uid)

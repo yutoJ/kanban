@@ -5,6 +5,7 @@ $default-letter-color:#565a5c;
 $default-bk-color:#fff;
 $default-button-letter:#fff;
 $default-alert-letter:#f00;
+$default-btn-border:#565a5c;
 // color.myoage
 $gradation-p1-1:#fbab7e;
 $gradation-p1-2:#f1ce68;
@@ -47,6 +48,12 @@ body {
 .flash-massage {
   background-color: $flash-message-bk;
   color: $default-letter-color;
+}
+
+// btn
+.btn.btn-upload {
+  border: 1px solid $default-btn-border;
+  color: $default-btn-border;
 }
 
 // sns btn

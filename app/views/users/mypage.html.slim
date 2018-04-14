@@ -1,0 +1,26 @@
+.container
+  .row
+    .col-md-8.offset-md-2
+      .row
+        .col-md-6
+          br
+          br
+          br
+          = image_tag avatar_url(current_user), class: "rounded-circle avatar-normal"
+        .col-md-6
+          br
+          br
+          br
+          = form_for(current_user) do |f|
+            = f.text_field :name, class: "form-control"
+            br
+            = f.label :profile_image, "ファイルを選択", class: "btn btn-default btn-block btn-upload"
+            = f.file_field :profile_image, style: "display:none;"
+            br
+            = f.submit "更新", class: "btn btn-info btn-block"
+          br
+          .row
+            .col-md-6
+              button.btn.btn-warning.btn-block ログアウト
+            .col-md-6
+              button.btn.btn-danger.btn-block 退会

@@ -23,6 +23,9 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
+# view
+gem 'cloudinary'
+gem 'carrierwave'
 # non-functional
 gem 'dotenv-rails'
 # template engine

@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     get 'logout', to: 'devise/sessions#destroy'
   end
 
-  get 'mypage', to: 'pages#mypage'
+  get 'mypage', to: 'users#mypage'
+
+  resource :user, only: [:update]
 end
