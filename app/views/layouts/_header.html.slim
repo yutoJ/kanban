@@ -7,6 +7,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
     - if (user_signed_in?)
       button.btn.btn-outline-secondary type="button" 1
       div &emsp;
-      = image_tag avatar_url(current_user), class: "rounded-circle avatar-small"
+      = link_to mypage_path do
+        = image_tag avatar_url(current_user), class: "rounded-circle avatar-small"
     - else
       = link_to "ログイン", login_path, class: "btn btn-outline-secondary"
