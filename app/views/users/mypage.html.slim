@@ -21,9 +21,9 @@
           br
           .row
             .col-md-6
-              button.btn.btn-warning.btn-block ログアウト
+              = link_to "ログアウト", logout_path, class: "btn btn-warning btn-block"
             .col-md-6
-              button.btn.btn-danger.btn-block 退会
+              = link_to "退会", leave_path, class: "btn btn-danger btn-block"
 
 javascript:
   function previewFile() {

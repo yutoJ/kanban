@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'logout', to: 'devise/sessions#destroy'
+    get 'leave', to: 'devise/registrations#destroy'
+
   end
 
   get 'mypage', to: 'users#mypage'
