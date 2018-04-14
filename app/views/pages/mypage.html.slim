@@ -1,0 +1,28 @@
+.container
+  .row
+    .col-md-8.offset-md-2
+      .row
+        .col-md-6
+          br
+          br
+          br
+          = image_tag current_user.sns_image, class: "rounded-circle avatar-normal"
+        .col-md-6
+          br
+          br
+          br
+          h3.name-label = current_user.name
+          br
+          = form_for(current_user.sns_image) do |f|
+            .field
+              f.file_field :upload_file
+            .actions
+              = f.submit "ファイルを選択"
+          br
+          button.btn.btn-info.btn-block 更新
+          br
+          .row
+            .col-md-6
+              button.btn.btn-warning.btn-block ログアウト
+            .col-md-6
+              button.btn.btn-danger.btn-block 退会

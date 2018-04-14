@@ -18,4 +18,5 @@ Devise.setup do |config|
   # ==> OmniAuth
   config.omniauth :facebook, ENV['FACEBOOK_AUTH_ID'], ENV['FACEBOOK_AUTH_ID_SECRET']
   config.omniauth :twitter, ENV['TWITTER_AUTH_ID'], ENV['TWITTER_AUTH_ID_SECRET']
+  config.omniauth :github, ENV['GITHUB_AUTH_ID'], ENV['GITHUB_AUTH_ID_SECRET']
 end

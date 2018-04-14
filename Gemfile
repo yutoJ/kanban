@@ -22,6 +22,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'omniauth-github'
 # non-functional
 gem 'dotenv-rails'
 # template engine
