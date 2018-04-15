@@ -28,6 +28,7 @@ gem 'cloudinary'
 gem 'carrierwave'
 # non-functional
 gem 'dotenv-rails'
+gem 'faker'
 # template engine
 gem 'slim-rails'
 

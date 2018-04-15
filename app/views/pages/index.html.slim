@@ -3,34 +3,15 @@
   br
   br
   .row
-    .col-md-4
-      .card
-        .card-body
-          center prodject 1
-
-    .col-md-4
-      .card
-        .card-body
-          center prodject 2
-
-    .col-md-4
-      .card
-        .card-body
-          center prodject 3
-  br
-  br
-  .row
-    .col-md-4
-      .card
-        .card-body
-          center prodject 4
-
-    .col-md-4
-      .card
-        .card-body
-          center prodject 5
-
-    .col-md-4
-      .card
-        .card-body
-          center prodject 6
+    - first_loop = true
+    - @projects.each do |project|
+      - if first_loop
+        .col-md-4
+          .card.project-card
+            .card-body
+              center 新しいプロジェクトを作成
+        - first_loop = false
+      .col-md-4
+        .card.project-card
+          .card-body
+            center = project.name

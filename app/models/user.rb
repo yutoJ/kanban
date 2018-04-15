@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   devise :rememberable, :trackable, :omniauthable, omniauth_providers: %i[facebook twitter github]
 
+  has_many :projects, dependent: :destroy
+
   mount_uploader :profile_image, ProfileImageUploader
 
   def self.find_for_auth(auth)
