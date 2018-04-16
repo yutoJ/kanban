@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
 
   authenticated :user do
-    root to: 'pages#index'
+    root to: 'projects#index'
   end
 
   get 'login', to: 'pages#login'
