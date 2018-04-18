@@ -15,7 +15,7 @@
             = f.text_field :name, class: "form-control"
             br
             = f.label :sns_image, "ファイルを選択", class: "btn btn-default btn-block btn-upload"
-            = f.file_field :sns_image, style: "display:none;", id: "btn-upload"
+            = f.file_field :sns_image, style: "display:none;", onchange: "previewFile()"
             br
             = f.submit "更新", class: "btn btn-info btn-block"
           br
@@ -24,15 +24,3 @@
               button.btn.btn-warning.btn-block ログアウト
             .col-md-6
               button.btn.btn-danger.btn-block 退会
-javascript:
-  function previewFile() {
-    var preview = document.getElementById('preview');
-    var file    = document.querySelector('input[type=file]').files[0];
-    var reader  = new FileReader();
-    reader.addEventListener("load", function () {
-      preview.src = reader.result;
-      }, false);
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  }
