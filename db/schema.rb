@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20180415011413) do
     t.integer "host_user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["host_user_id"], name: "index_projects_on_host_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 20180415011413) do
     t.string "uid", null: false
     t.string "provider"
     t.string "sns_image"
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
 end
