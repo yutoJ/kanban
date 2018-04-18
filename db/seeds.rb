@@ -1,5 +1,7 @@
 user = User.create(
-   name: Faker::Name.first_name
+   name: Faker::Name.first_name,
+   uid: Faker::Bitcoin.address,
+   provider: "sns"
 )
 
 100.times do
