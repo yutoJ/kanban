@@ -1,9 +1,8 @@
 class User < ApplicationRecord
   devise :rememberable, :trackable, :omniauthable, omniauth_providers: %i[facebook twitter github]
-
   has_many :projects, dependent: :destroy
 
-  mount_uploader :profile_image, ProfileImageUploader
+  mount_uploader :sns_image, SnsImageUploader
 
   def self.find_for_auth(auth)
     user = User.find_by(provider: auth.provider, uid: auth.uid)
@@ -15,7 +14,7 @@ class User < ApplicationRecord
       name:      auth.extra.raw_info.name,
       uid:       auth.uid,
       provider:  auth.provider,
-      sns_image: auth.info.image
+      remote_sns_image_url: auth.info.image
     )
     user
   end
@@ -25,7 +24,7 @@ class User < ApplicationRecord
       name:      auth.info.nickname,
       uid:       auth.uid,
       provider:  auth.provider,
-      sns_image: auth.info.image
+      remote_sns_image_url: auth.info.image
     )
     user
   end
@@ -35,7 +34,7 @@ class User < ApplicationRecord
       name:      auth.info.nickname,
       uid:       auth.uid,
       provider:  auth.provider,
-      sns_image: auth.info.image
+      remote_sns_image_url: auth.info.image
     )
     user
   end
