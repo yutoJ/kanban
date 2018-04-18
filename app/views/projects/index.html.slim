@@ -1,0 +1,13 @@
+.container
+  br
+  br
+  br
+  .row#projects
+    .col-md-4
+      .card.project-card
+        .card-body
+          center 新しいプロジェクトを作成
+    = render 'projects', projects: @projects
+  .row
+    .col-md-4.offset-md-4
+        center = link_to_next_page @projects, 'もっと見る', remote: true, id: 'more_link'
