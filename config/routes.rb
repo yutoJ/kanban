@@ -1,14 +1,25 @@
 Rails.application.routes.draw do
 
-  root to: 'pages#index'
+  unauthenticated :user do
+    root to: 'pages#login'
+  end
 
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
+  authenticated :user do
+    root to: 'projects#index'
+  end
 
   get 'login', to: 'pages#login'
 
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
+
+
   devise_scope :user do
     get 'logout', to: 'devise/sessions#destroy'
+    get 'leave', to: 'devise/registrations#destroy'
+
   end
 
-  get 'mypage', to: 'pages#mypage'
+  get 'mypage', to: 'users#mypage'
+
+  resource :user, only: [:update]
 end

@@ -23,8 +23,14 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
+# view
+gem 'cloudinary'
+gem 'carrierwave'
+# functional
+gem 'kaminari'
 # non-functional
 gem 'dotenv-rails'
+gem 'faker'
 # template engine
 gem 'slim-rails'
 
@@ -43,6 +49,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop', require: false
   gem 'foreman'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 group :production, :staging do

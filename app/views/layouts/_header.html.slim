@@ -1,12 +1,15 @@
 nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  a.navbar-brand href="#" トップ
+  = link_to "トップ", root_path, class: "navbar-brand"
   .collapse.navbar-collapse#navbarNav
     ul.navbar-nav.mr-auto
       li.nav-item
         button.btn.btn-outline-secondary type="button" マイプロジェクト
+      li.nav-item
+        input.form-control type="search" placeholder="検索"
     - if (user_signed_in?)
       button.btn.btn-outline-secondary type="button" 1
       div &emsp;
-      = image_tag current_user.sns_image, class: "rounded-circle avatar-small"
+      = link_to mypage_path do
+        = image_tag current_user.sns_image, class: "rounded-circle avatar-small"
     - else
       = link_to "ログイン", login_path, class: "btn btn-outline-secondary"
