@@ -10,6 +10,7 @@ user = User.create(
         description: Faker::Space.agency,
         user_id: user.id
       )
+end
 # please sign up before seeds.rb
 10.times do
      Project.create(
