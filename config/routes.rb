@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
 
   get 'mypage', to: 'users#mypage'
+  get 'myproject', to: 'projects#myproject'
 
   resource :user, only: [:update]
 end

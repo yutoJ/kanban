@@ -1,0 +1,2 @@
+| $('#projects').append("#{escape_javascript(render 'projects', projects: @projects)}");
+| $("#more_link").replaceWith("#{escape_javascript(link_to_next_page(@projects, 'more', remote: true, id: 'more_link'))}");

@@ -8,6 +8,13 @@ user = User.create(
      Project.create(
         name: Faker::Space.planet,
         description: Faker::Space.agency,
-        host_user_id: user.id
+        user_id: user.id
+      )
+# please sign up before seeds.rb
+10.times do
+     Project.create(
+        name: Faker::Science.element,
+        description: Faker::Science.scientist,
+        user_id: 1
       )
 end
