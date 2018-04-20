@@ -210,4 +210,6 @@ ja:
       short: "%y/%m/%d %H:%M"
     pm: 午後
   notice:
-    create_new_project: "あなたのプロジェクトが追加されました。"
+    create_new_project: "新しいプロジェクトを追加しました"
+    update_project: "あなたのプロジェクトを更新しました"
+    not_owner: "あなたのプロジェクトではありません"

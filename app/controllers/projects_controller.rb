@@ -1,5 +1,8 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!, only: %i[index myproject create new]
+  before_action :authenticate_user!
+  before_action :check_owner, only: %i[edit update]
+  before_action :project_params, only: %i[create update]
+
   def index
     paginates_per = request.xhr? ? 9 : 8
     @projects = Project.all.reverse_order.page(params[:page]).per(paginates_per)
@@ -28,8 +31,20 @@ class ProjectsController < ApplicationController
       flash[:notice] = I18n.t('notice.create_new_project')
       redirect_to :myproject
     else
-
       render :new
+    end
+  end
+
+  def edit
+    # only before action
+  end
+
+  def update
+    if @project.update(project_params)
+      flash[:notice] = I18n.t('notice.update_project')
+      redirect_to :myproject
+    else
+      render :edit
     end
   end
 
@@ -37,5 +52,20 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:name, :description)
+  end
+
+  def set_project
+    @project = Project.find(params[:id])
+  end
+
+  def check_owner
+    return if my_project?
+    flash[:notice] = I18n.t('notice.not_owner')
+    redirect_to :myproject
+  end
+
+  def my_project?
+    set_project
+    current_user.id == @project.user_id
   end
 end
