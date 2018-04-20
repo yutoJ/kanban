@@ -3,7 +3,9 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
   .collapse.navbar-collapse#navbarNav
     ul.navbar-nav.mr-auto
       li.nav-item
-        button.btn.btn-outline-secondary type="button" マイプロジェクト
+      - if (user_signed_in?)
+        = link_to myproject_path do
+          button.btn.btn-outline-secondary type="button" マイプロジェクト
       li.nav-item
         input.form-control type="search" placeholder="検索"
     - if (user_signed_in?)
