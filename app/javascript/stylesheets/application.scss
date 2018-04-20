@@ -9,8 +9,6 @@ $default-btn-border:#565a5c;
 // color.myoage
 $gradation-p1-1:#fbab7e;
 $gradation-p1-2:#f1ce68;
-// colors.parts
-$flash-message-bk:#7fff00;
 // colors.sns
 $facebook-button:#3b5998;
 $facebook-button-active:#2d467b;
@@ -50,11 +48,6 @@ body {
 
 .red-text {
   color: $default-alert-letter;
-}
-
-.flash-massage {
-  background-color: $flash-message-bk;
-  color: $default-letter-color;
 }
 
 // btn
