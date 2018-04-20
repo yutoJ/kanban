@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   get 'myproject', to: 'projects#myproject'
 
   resource :user, only: [:update]
+  resource :project, only: [:new, :create]
 end
