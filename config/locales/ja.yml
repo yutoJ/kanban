@@ -213,3 +213,4 @@ ja:
     create_new_project: "新しいプロジェクトを追加しました"
     update_project: "あなたのプロジェクトを更新しました"
     not_owner: "あなたのプロジェクトではありません"
+    delete_project: "あなたのプロジェクトを削除しました"

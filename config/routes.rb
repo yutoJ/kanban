@@ -23,5 +23,5 @@ Rails.application.routes.draw do
   get 'myproject', to: 'projects#myproject'
 
   resources :user, only: [:update]
-  resources :projects, only: [:new, :create, :edit, :update]
+  resources :projects, only: [:new, :create, :edit, :update, :destroy]
 end

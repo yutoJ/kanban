@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_owner, only: %i[edit update]
+  before_action :check_owner, only: %i[edit update destroy]
   before_action :project_params, only: %i[create update]
 
   def index
@@ -46,6 +46,12 @@ class ProjectsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @project.destroy
+    flash[:notice] = I18n.t('notice.delete_project')
+    redirect_to :myproject
   end
 
   private
