@@ -3,10 +3,13 @@ ja:
   activerecord:
     models:
       project: プロジェクト
+      column: カラム
     attributes:
       project:
         name: プロジェクト名
         description: 概要
+      column:
+        name: カラム名
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
@@ -214,3 +217,4 @@ ja:
     update_project: "あなたのプロジェクトを更新しました"
     not_owner: "あなたのプロジェクトではありません"
     delete_project: "あなたのプロジェクトを削除しました"
+    add_new_column: "新しいカラムを追加しました"

@@ -23,5 +23,9 @@ Rails.application.routes.draw do
   get 'myproject', to: 'projects#myproject'
 
   resources :user, only: [:update]
-  resources :projects
+  resources :projects do
+    member do
+      resources :columns, only: %i[new create]
+    end
+  end
 end
