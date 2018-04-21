@@ -34,9 +34,14 @@ a:hover {
 }
 
 .container {
-  width: 80%;
+  width: 100%;
 }
 
+.grid-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
 // header
 .nav-item {
   padding-left: 5px;
