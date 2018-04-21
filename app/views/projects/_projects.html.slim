@@ -1,5 +1,6 @@
 - projects.each do |project|
   .col-md-4
-    .card.project-card
-      .card-body
-        center = project.name
+    = link_to project_path(project) do
+      .card.project-card
+        .card-body
+          center = project.name

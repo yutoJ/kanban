@@ -25,6 +25,14 @@ body {
   font-family: "Varela Round", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 .container {
   width: 80%;
 }
@@ -101,4 +109,11 @@ body {
 .card.project-card {
   margin-bottom: 10px;
   margin-top: 10px;
+}
+
+.card.column-card {
+  margin-bottom: 5px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 5px;
 }

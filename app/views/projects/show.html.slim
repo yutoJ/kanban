@@ -1,0 +1,21 @@
+.container
+  .row
+    .col-md-6
+      br
+      h1 = @project.name
+    .col-md-6
+      br
+      .btn-toolbar.float-right
+        .btn-group.mr-3
+          = link_to "ログを見る", "#", class: "btn btn-primary"
+        .btn-group
+          = link_to "ユーザーを招待", "#", class: "btn btn-primary"
+  br
+  .row
+    .col-md-10
+      .card-deck
+        = render 'column'
+        = render 'column'
+        = render 'column'
+    .col-md-2
+      = link_to "カラムを追加", "#", class: "btn btn-dark"
