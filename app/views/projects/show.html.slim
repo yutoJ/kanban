@@ -10,12 +10,15 @@
           = link_to "ログを見る", "#", class: "btn btn-primary"
         .btn-group
           = link_to "ユーザーを招待", "#", class: "btn btn-primary"
-  br
-  .row
-    .col-md-10
-      .card-deck
-        = render 'column'
-        = render 'column'
-        = render 'column'
-    .col-md-2
-      = link_to "カラムを追加", "#", class: "btn btn-dark"
+.scroll-wrapper
+  .scroll-inner
+    = render 'column'
+    = render 'column'
+    = render 'column'
+    = render 'column'
+    = render 'column'
+    = render 'column'
+    = render 'column'
+    .card.box
+      .card-header
+        center = link_to "カラムを追加", "#"
