@@ -1,0 +1,15 @@
+.card.column-card
+  .card-body
+    .container
+      .row
+        .col-md-3.grid-center
+          = link_to '←', "#"
+        .col-md-6.grid-center
+          label カード名
+        .col-md-3.grid-center
+          = link_to '→', "#"
+      .row
+        .col-md-6.grid-center
+          small.text-muted 10月10日
+        .col-md-6.grid-center
+          = image_tag current_user.sns_image, class: "rounded-circle avatar-small"

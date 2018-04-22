@@ -1,3 +1,7 @@
 class Project < ApplicationRecord
-  belongs_to :host_user, class_name: 'User', inverse_of: :projects
+  validates :name, presence: true, length: { maximum: 140 }
+  validates :name, length: { maximum: 300 }
+
+  belongs_to :user
+  has_many :columns, dependent: :destroy
 end

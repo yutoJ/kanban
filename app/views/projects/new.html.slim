@@ -1,0 +1,24 @@
+.container
+  .row
+    .col-md-8.offset-md-2
+      br
+      br
+      br
+      .card
+        .card-header.text-center
+          card.text 新しいプロジェクトを作成
+        .card-body
+          .container
+            - if @project.errors.any?
+              #error_explanation.alert.alert-danger
+                ul
+                  - @project.errors.full_messages.each do |message|
+                    li = message
+            = form_for(@project, url: projects_path) do |f|
+              = f.label :name, "プロジェクト名"
+              = f.text_field :name, class: "form-control"
+              br
+              = f.label :description, "概要"
+              = f.text_area :description, class: "form-control"
+              br
+              = f.submit "作成", class: "btn btn-primary"
