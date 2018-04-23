@@ -1,0 +1,13 @@
+.card.box
+  .card-header
+    form.form-inline.justify-content-center
+      = link_to '←&emsp;'.html_safe, "#"
+      label = link_to column.name, edit_project_column_path(column.project, column)
+      = link_to '&emsp;→'.html_safe, "#"
+  .card-body
+    = render 'card'
+    = render 'card'
+    = render 'card'
+    = render 'card'
+  .card-footer
+    center = link_to "カードを追加", "#"
