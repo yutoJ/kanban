@@ -218,3 +218,5 @@ ja:
     not_owner: "あなたのプロジェクトではありません"
     delete_project: "あなたのプロジェクトを削除しました"
     add_new_column: "新しいカラムを追加しました"
+    update_column: "カラムを更新しました"
+    delete_column: "カラムを削除しました"

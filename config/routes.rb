@@ -24,8 +24,6 @@ Rails.application.routes.draw do
 
   resources :user, only: [:update]
   resources :projects do
-    member do
-      resources :columns, only: %i[new create]
-    end
+    resources :columns, except: %i[index]
   end
 end

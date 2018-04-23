@@ -14,7 +14,7 @@
                 ul
                   - @column.errors.full_messages.each do |message|
                     li = message
-            = form_for(@column, url: columns_path) do |f|
+            = form_for(@column, url: project_columns_path) do |f|
               = f.label :name, "カラム名"
               = f.text_field :name, class: "form-control"
               br
