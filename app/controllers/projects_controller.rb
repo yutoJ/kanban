@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_project, only: %i[edit update]
   before_action :check_owner, only: %i[edit update]
   before_action :project_params, only: %i[create update]
 
@@ -30,8 +31,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      flash[:notice] = I18n.t('notice.update_project')
-      redirect_to :myproject
+      redirect_to :myproject, notice: t('notice.update_project')
     else
       render :edit
     end
@@ -54,14 +54,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
-  def check_owner
-    return if my_project?
-    flash[:notice] = I18n.t('notice.not_owner')
-    redirect_to :myproject
+  def my_project?(project)
+    current_user.id == project.user_id
   end
 
-  def my_project?
-    set_project
-    current_user.id == @project.user_id
+  def check_owner
+    redirect_to :myproject, notice: t('notice.not_owner') unless my_project?(@project)
   end
 end
