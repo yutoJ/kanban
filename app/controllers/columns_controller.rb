@@ -23,8 +23,7 @@ class ColumnsController < ApplicationController
 
   def update
     if @column.update(column_params)
-      flash[:notice] = I18n.t('notice.update_column')
-      redirect_to project_path(@column.project)
+      redirect_to project_path(@column.project), notice: t('notice.update_column')
     else
       render :edit
     end
@@ -32,8 +31,7 @@ class ColumnsController < ApplicationController
 
   def destroy
     @column.destroy
-    flash[:notice] = I18n.t('notice.delete_column')
-    redirect_to project_path(@column.project)
+    redirect_to project_path(@column.project), notice: t('notice.delete_column')
   end
 
   private
