@@ -10,8 +10,7 @@ class ColumnsController < ApplicationController
   def create
     @column = @project.columns.build(column_params)
     if @project.save
-      flash[:notice] = I18n.t('notice.add_new_column')
-      redirect_to project_path(@project)
+      redirect_to project_path(@project), notice: t('notice.add_new_column')
     else
       render :new
     end
