@@ -1,11 +1,11 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!, only: %i[index myproject create new]
   def index
-    @projects = paginate_index(Project.all)
+    @projects = Project.paginate_index(Project.all, params[:page], request.xhr?)
   end
 
   def myproject
-    @projects = paginate_index(current_user.projects)
+    @projects = Project.paginate_index(current_user.projects, params[:page], request.xhr?)
   end
 
   def new
@@ -23,13 +23,6 @@ class ProjectsController < ApplicationController
   end
 
   private
-
-  def paginate_index(projects)
-    project_count_on_first_page = 8
-    project_count_on_each_ajax = 9
-    paginates_per = request.xhr? ? project_count_on_each_ajax : project_count_on_first_page
-    projects.reverse_order.page(params[:page]).per(paginates_per)
-  end
 
   def project_params
     params.require(:project).permit(:name, :description)
