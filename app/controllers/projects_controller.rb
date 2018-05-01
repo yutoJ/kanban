@@ -39,8 +39,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
-    flash[:notice] = I18n.t('notice.delete_project')
-    redirect_to :myproject
+    redirect_to :myproject, notice: t('notice.delete_project')
   end
 
   private
