@@ -1,24 +1,15 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_project, only: %i[edit update destroy]
   before_action :check_owner, only: %i[edit update destroy]
   before_action :project_params, only: %i[create update]
 
   def index
-    paginates_per = request.xhr? ? 9 : 8
-    @projects = Project.all.reverse_order.page(params[:page]).per(paginates_per)
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @projects = Project.paginate_index(Project.all, params[:page], request.xhr?)
   end
 
   def myproject
-    paginates_per = request.xhr? ? 9 : 8
-    @projects = current_user.projects.reverse_order.page(params[:page]).per(paginates_per)
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @projects = Project.paginate_index(current_user.projects, params[:page], request.xhr?)
   end
 
   def new
@@ -28,8 +19,7 @@ class ProjectsController < ApplicationController
   def create
     @project = current_user.projects.build(project_params)
     if @project.save
-      flash[:notice] = I18n.t('notice.create_new_project')
-      redirect_to :myproject
+      redirect_to :myproject, notice: t('notice.create_new_project')
     else
       render :new
     end
@@ -41,8 +31,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      flash[:notice] = I18n.t('notice.update_project')
-      redirect_to :myproject
+      redirect_to :myproject, notice: t('notice.update_project')
     else
       render :edit
     end
@@ -64,14 +53,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
-  def check_owner
-    return if my_project?
-    flash[:notice] = I18n.t('notice.not_owner')
-    redirect_to :myproject
+  def my_project?(project)
+    current_user.id == project.user_id
   end
 
-  def my_project?
-    set_project
-    current_user.id == @project.user_id
+  def check_owner
+    redirect_to :myproject, notice: t('notice.not_owner') unless my_project?(@project)
   end
 end
