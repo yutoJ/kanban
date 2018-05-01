@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project, only: %i[show]
-  before_action :check_owner, only: %i[edit update destroy]
+  before_action :check_owner, only: %i[show edit update destroy]
   before_action :project_params, only: %i[create update]
 
   def index
