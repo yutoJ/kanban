@@ -6,7 +6,7 @@
     .col-md-4
       .card.project-card
         .card-body
-          center 新しいプロジェクトを作成
+          center = link_to '新しいプロジェクトを作成', new_project_path
     = render 'projects', projects: @projects
   .row
     .col-md-4.offset-md-4

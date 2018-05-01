@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   get 'mypage', to: 'users#mypage'
   get 'myproject', to: 'projects#myproject'
 
-  resource :user, only: [:update]
+  resources :user, only: [:update]
+  resources :projects, only: [:new, :create, :edit, :update, :destroy]
 end
