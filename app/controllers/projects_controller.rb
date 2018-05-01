@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_project, only: %i[show]
+  before_action :set_project, only: %i[show destroy]
   before_action :check_owner, only: %i[show edit update destroy]
   before_action :project_params, only: %i[create update]
 
@@ -29,8 +29,7 @@ class ProjectsController < ApplicationController
   def create
     @project = current_user.projects.build(project_params)
     if @project.save
-      flash[:notice] = I18n.t('notice.create_new_project')
-      redirect_to :myproject
+      redirect_to :myproject, notice: t('notice.create_new_project')
     else
       render :new
     end
@@ -42,8 +41,7 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      flash[:notice] = I18n.t('notice.update_project')
-      redirect_to :myproject
+      redirect_to :myproject, notice: t('notice.update_project')
     else
       render :edit
     end
@@ -55,8 +53,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project.destroy
-    flash[:notice] = I18n.t('notice.delete_project')
-    redirect_to :myproject
+    redirect_to :myproject, notice: t('notice.delete_project')
   end
 
   private
@@ -71,8 +68,7 @@ class ProjectsController < ApplicationController
 
   def check_owner
     return if my_project?
-    flash[:notice] = I18n.t('notice.not_owner')
-    redirect_to :myproject
+    redirect_to :myproject, notice: t('notice.not_owner')
   end
 
   def my_project?
