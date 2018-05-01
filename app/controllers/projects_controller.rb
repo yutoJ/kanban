@@ -1,25 +1,15 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_project, only: %i[show destroy]
+  before_action :set_project, only: %i[show edit update destroy]
   before_action :check_owner, only: %i[show edit update destroy]
   before_action :project_params, only: %i[create update]
 
   def index
-    paginates_per = request.xhr? ? 9 : 8
-    @projects = Project.all.reverse_order.page(params[:page]).per(paginates_per)
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @projects = Project.paginate_index(Project.all, params[:page], request.xhr?)
   end
 
   def myproject
-    paginates_per = request.xhr? ? 9 : 8
-    @projects = current_user.projects.reverse_order.page(params[:page]).per(paginates_per)
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @projects = Project.paginate_index(current_user.projects, params[:page], request.xhr?)
   end
 
   def new
@@ -66,13 +56,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
-  def check_owner
-    return if my_project?
-    redirect_to :myproject, notice: t('notice.not_owner')
+  def my_project?(project)
+    current_user.id == project.user_id
   end
 
-  def my_project?
-    set_project
-    current_user.id == @project.user_id
+  def check_owner
+    redirect_to :myproject, notice: t('notice.not_owner') unless my_project?(@project)
   end
 end
