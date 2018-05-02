@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
 
-
   devise_scope :user do
     get 'logout', to: 'devise/sessions#destroy'
     get 'leave', to: 'devise/registrations#destroy'
@@ -28,5 +27,5 @@ Rails.application.routes.draw do
   end
 
   resources :column_positions, only: [:update]
-
+  resources :cards, only: %i[new create]
 end

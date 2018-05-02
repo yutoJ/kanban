@@ -1,0 +1,30 @@
+.container
+  .row
+    .col-md-8.offset-md-2
+      br
+      br
+      br
+      .card
+        .card-header.text-center
+          card.text = title
+        .card-body
+          .container
+            - if card.errors.any?
+              #error_explanation.alert.alert-danger
+                ul
+                  - card.errors.full_messages.each do |message|
+                    li = message
+            = form_with(model: card, local: true) do |f|
+              = f.hidden_field :project_id
+              = f.hidden_field :column_id
+              = f.label :name, "カード名"
+              = f.text_field :name, class: "form-control"
+              .row
+                .col-md-6
+                  = f.label :due_date, "入荷予定日"
+                  = f.date_select :due_date, {}, class: "form-control"
+                .col-md-6
+                  = f.label :assignee_id, "担当者"
+                  = f.select :assignee_id, [[ current_user.name , current_user.id]], {}, {class: 'form-control'}
+              br
+              = f.submit "作成", class: "btn btn-primary"
