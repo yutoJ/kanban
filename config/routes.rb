@@ -26,4 +26,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :columns, except: %i[index show]
   end
+
+  resources :column_positions, only: [:update]
+
 end

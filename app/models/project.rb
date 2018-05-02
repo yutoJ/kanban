@@ -4,6 +4,7 @@ class Project < ApplicationRecord
 
   belongs_to :user
   has_many :columns, dependent: :destroy
+  has_many :column_positions, dependent: :destroy
 
   @project_count_on_first_page = 8
   @project_count_on_each_ajax = 9

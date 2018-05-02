@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    # only before action
+    @columns, @positions = ColumnPosition.select_columns_related_with(@project)
   end
 
   def destroy
@@ -54,10 +54,6 @@ class ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
-  end
-
-  def my_project?(project)
-    current_user.id == project.user_id
   end
 
   def check_owner
