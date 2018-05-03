@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   mount_uploader :sns_image, SnsImageUploader
 
+  scope :fuzzy_search, ->(name) { where('name LIKE(?)', "%#{name}%") }
+
   def self.find_for_auth(auth)
     user = User.find_by(provider: auth.provider, uid: auth.uid)
     user

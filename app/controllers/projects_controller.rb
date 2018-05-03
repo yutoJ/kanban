@@ -47,7 +47,7 @@ class ProjectsController < ApplicationController
   end
 
   def invite
-    @users = User.all
+    @users = request.xhr? ? User.fuzzy_search(params[:search]) : User.all
   end
 
   private

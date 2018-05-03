@@ -13,27 +13,10 @@
               span ユーザを検索
             br
             .row
-              = form_tag "#", method: "get" do
+              = form_tag invite_project_path(@project), remote: true, method: :get do
                 .input-group
                   = text_field_tag :search, params[:search], placeholder: "ユーザ名", class: "form-control"
                   span.input-group-btn
                     = submit_tag "検索", class: "btn btn-outline-dark search-btn-position"
-            - @users.each do |user|
-              br
-              .row
-                .col-md-1
-                  = image_tag user.sns_image, class: "rounded-circle avatar-small"
-                .col-md-3.grid-center
-                  center = user.name
-                .col-md-3
-                  = link_to "招待", "#", class: "btn btn-success"
-                .col-md-5
-              br
-              .row
-                .col-md-1
-                  = image_tag user.sns_image, class: "rounded-circle avatar-small"
-                .col-md-3.grid-center
-                  center = user.name
-                .col-md-3
-                  = link_to "招待済み", "#", class: "btn btn-secondary"
-                .col-md-5
+            #user-list
+              = render 'users/user_invitation', users: @users

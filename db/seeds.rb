@@ -1,5 +1,5 @@
 user = User.create(
-   name: Faker::Name.first_name,
+   name: Faker::Hobbit.character,
    uid: Faker::Bitcoin.address,
    provider: "sns"
 )
@@ -17,5 +17,13 @@ end
         name: Faker::Science.element,
         description: Faker::Science.scientist,
         user_id: 1
+      )
+end
+
+10.times do
+     User.create(
+        name: Faker::StarWars.character,
+        uid: Faker::Bitcoin.address,
+        provider: "sns"
       )
 end

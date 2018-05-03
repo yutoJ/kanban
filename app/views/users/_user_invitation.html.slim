@@ -1,0 +1,19 @@
+- users.each do |user|
+  br
+  .row
+    .col-md-1
+      = image_tag user.sns_image, class: "rounded-circle avatar-small"
+    .col-md-3.grid-center
+      center = user.name
+    .col-md-3
+      = link_to "招待", "#", class: "btn btn-success"
+    .col-md-5
+  br
+  .row
+    .col-md-1
+      = image_tag user.sns_image, class: "rounded-circle avatar-small"
+    .col-md-3.grid-center
+      center = user.name
+    .col-md-3
+      = link_to "招待済み", "#", class: "btn btn-secondary"
+    .col-md-5
