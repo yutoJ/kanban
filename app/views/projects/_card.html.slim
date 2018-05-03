@@ -5,7 +5,7 @@
         .col-md-3.grid-center
           = link_to '', "#", class: 'fa fa-arrow-left'
         .col-md-6.grid-center
-          label = card.name
+          label = link_to card.name, edit_card_path(card)
         .col-md-3.grid-center
           = link_to '', "#", class: 'fa fa-arrow-right'
       .row

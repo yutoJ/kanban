@@ -1,7 +1,8 @@
 class CardsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_column, only: %i[new create]
-  before_action :check_owner, only: %i[new create]
+  before_action :set_card, only: %i[edit update destroy]
+  before_action :check_owner
 
   def new
     @card = @column.cards.build
@@ -15,6 +16,23 @@ class CardsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+    # only before action
+  end
+
+  def update
+    if @card.update(card_params)
+      redirect_to project_path(@card.project), notice: t('notice.update_card')
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @card.destroy
+    redirect_to project_path(@card.project), notice: t('notice.delete_card')
   end
 
   private
@@ -31,7 +49,15 @@ class CardsController < ApplicationController
     params.require(:card).permit(:name, :due_date, :assignee_id, :project_id, :column_id)
   end
 
+  def set_card
+    @card = Card.find(params[:id])
+  end
+
   def check_owner
-    redirect_to :myproject, notice: t('notice.not_owner') unless my_project?(@column.project)
+    if @column.present?
+      redirect_to :myproject, notice: t('notice.not_owner') unless my_project?(@column.project)
+    elsif @card.present?
+      redirect_to :myproject, notice: t('notice.not_owner') unless my_project?(@card.project)
+    end
   end
 end

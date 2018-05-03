@@ -27,5 +27,5 @@ Rails.application.routes.draw do
   end
 
   resources :column_positions, only: [:update]
-  resources :cards, only: %i[new create]
+  resources :cards, except: %i[index show]
 end

@@ -221,3 +221,5 @@ ja:
     update_column: "カラムを更新しました"
     delete_column: "カラムを削除しました"
     add_new_card: "カードを作成しました"
+    update_card: "カードを更新しました"
+    delete_card: "カードを削除しました"
