@@ -223,3 +223,4 @@ ja:
     add_new_card: "カードを作成しました"
     update_card: "カードを更新しました"
     delete_card: "カードを削除しました"
+    no_column: "そのカラムはこのプロジェクトに存在しません"
