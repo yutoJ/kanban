@@ -36,8 +36,9 @@ class CardsController < ApplicationController
   end
 
   def move
-    return redirect_to project_path(@card.project), notice: t('notice.no_column') unless Column.exists?(params[:id])
-    @card.column_id = params[:id]
+    column = Column.find_by(id: params[:to])
+    return redirect_to project_path(@card.project), notice: t('notice.no_column') unless column.present?
+    @card.column_id = column.id
     @card.save
     redirect_to project_path(@card.project)
   end
