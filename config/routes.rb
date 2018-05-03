@@ -27,5 +27,9 @@ Rails.application.routes.draw do
   end
 
   resources :column_positions, only: [:update]
-  resources :cards, except: %i[index show]
+  resources :cards, except: %i[index show] do
+    member do
+      get 'move'
+    end
+  end
 end
