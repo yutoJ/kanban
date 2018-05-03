@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_project, only: %i[show edit update destroy]
-  before_action :check_owner, only: %i[show edit update destroy]
+  before_action :set_project, only: %i[show edit update destroy invite]
+  before_action :check_owner, only: %i[show edit update destroy invite]
   before_action :project_params, only: %i[create update]
 
   def index
@@ -44,6 +44,10 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     redirect_to :myproject, notice: t('notice.delete_project')
+  end
+
+  def invite
+    @users = User.all
   end
 
   private

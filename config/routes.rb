@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   resources :user, only: [:update]
   resources :projects do
     resources :columns, except: %i[index show]
+    member do
+      get 'invite'
+    end
   end
 
   resources :column_positions, only: [:update]
