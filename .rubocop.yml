@@ -25,6 +25,9 @@ Rails/UnknownEnv:
   Environments:
     - staging
 
+Rails/InverseOf:
+  Enabled: false
+
 Metrics/AbcSize:
   Max: 30
 

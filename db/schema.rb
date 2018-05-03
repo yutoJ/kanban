@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20180502054936) do
     t.integer "assignee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["assignee_id"], name: "index_cards_on_assignee_id"
     t.index ["column_id"], name: "index_cards_on_column_id"
     t.index ["name", "project_id"], name: "index_cards_on_name_and_project_id", unique: true
     t.index ["project_id"], name: "index_cards_on_project_id"

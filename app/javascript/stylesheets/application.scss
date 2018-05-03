@@ -1,6 +1,6 @@
 @import '~bootstrap/scss/bootstrap'; // scss-lint:disable StringQuotes
-@import '~font-awesome/scss/font-awesome';
-@import '~bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker';
+@import '~font-awesome/scss/font-awesome'; // scss-lint:disable StringQuotes
+@import '~bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker'; // scss-lint:disable StringQuotes
 // colors.general
 $default-letter-color:#565a5c;
 $default-bk-color:#fff;

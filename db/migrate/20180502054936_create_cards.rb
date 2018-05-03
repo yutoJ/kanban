@@ -11,5 +11,6 @@ class CreateCards < ActiveRecord::Migration[5.1]
     end
 
     add_index :cards, [:name, :project_id], unique: true
+    add_index :cards, :assignee_id
   end
 end
