@@ -2,7 +2,7 @@
   .card-header
     = render 'column_header', { column: column, positions: positions }
   .card-body
-    - column.cards.each do |card|
-      = render 'card', card: card
+    - column.cards.reverse_each do |card|
+      = render 'cards/card', card: card
   .card-footer
     center = link_to "カードを追加", new_card_path(column_id: column)
