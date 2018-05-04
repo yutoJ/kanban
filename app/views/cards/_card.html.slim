@@ -12,6 +12,6 @@
             = link_to '', move_card_path(card, to: right_position(card.column_id, positions).id ), class: 'fa fa-arrow-right'
       .row
         .col-md-6.grid-center
-          small.text-muted = date_japan(card.due_date)
+          small.text-muted = I18n.l(card.due_date, format: :short)
         .col-md-6.grid-center
           = image_tag current_user.sns_image, class: "rounded-circle avatar-small"
