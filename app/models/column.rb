@@ -7,7 +7,6 @@ class Column < ApplicationRecord
 
   def save_with_column_position
     ColumnPosition.add_seq_record_to(self)
-    self.column_position.project_id = self.project_id
     save
   end
 end

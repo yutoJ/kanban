@@ -4,7 +4,6 @@ class Project < ApplicationRecord
 
   belongs_to :user
   has_many :columns, dependent: :destroy
-  has_many :column_positions, dependent: :destroy
   has_many :cards, dependent: :destroy
 
   PROJECT_COUNT_ON_FIRST_PAGE = 8
