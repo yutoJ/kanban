@@ -4,7 +4,7 @@ class ColumnPositionsController < ApplicationController
   before_action :check_owner, only: %i[update]
 
   def update
-    redirect_to @current_position.column.project if @current_position.change_position(params[:move_to])
+    redirect_to project_path(@current_position.column.project) if @current_position.change_position(params[:move_to])
   end
 
   private
