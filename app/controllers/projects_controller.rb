@@ -1,19 +1,62 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_user!, only: %i[index myproject]
+  before_action :authenticate_user!
+  before_action :set_project, only: %i[show edit update destroy]
+  before_action :check_owner, only: %i[show edit update destroy]
+  before_action :project_params, only: %i[create update]
+
   def index
-    @projects = paginate_index(Project)
+    @projects = Project.paginate_index(Project.all, params[:page], request.xhr?)
   end
 
   def myproject
-    @projects = paginate_index(current_user.projects)
+    @projects = Project.paginate_index(current_user.projects, params[:page], request.xhr?)
+  end
+
+  def new
+    @project = current_user.projects.build
+  end
+
+  def create
+    @project = current_user.projects.build(project_params)
+    if @project.save
+      redirect_to :myproject, notice: t('notice.create_new_project')
+    else
+      render :new
+    end
+  end
+
+  def edit
+    # only before action
+  end
+
+  def update
+    if @project.update(project_params)
+      redirect_to :myproject, notice: t('notice.update_project')
+    else
+      render :edit
+    end
+  end
+
+  def show
+    @columns, @positions = ColumnPosition.select_columns_related_with(@project)
+  end
+
+  def destroy
+    @project.destroy
+    redirect_to :myproject, notice: t('notice.delete_project')
   end
 
   private
 
-  def paginate_index(projects)
-    project_count_on_first_page = 8
-    project_count_on_each_ajax = 9
-    paginates_per = request.xhr? ? project_count_on_each_ajax : project_count_on_first_page
-    projects.page(params[:page]).per(paginates_per)
+  def project_params
+    params.require(:project).permit(:name, :description)
+  end
+
+  def set_project
+    @project = Project.find(params[:id])
+  end
+
+  def check_owner
+    redirect_to :myproject, notice: t('notice.not_owner') unless my_project?(@project)
   end
 end

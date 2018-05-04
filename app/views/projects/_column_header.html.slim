@@ -1,0 +1,7 @@
+form.form-inline.justify-content-center
+  - current_position_id = current_position(column.id, positions).id
+  - unless column.id == positions.first.column_id
+    = link_to '←&emsp;'.html_safe, column_position_path(current_position_id, move_to: left_position(column.id, positions).id ), :method => :put
+  label = link_to column.name, edit_project_column_path(column.project_id, column)
+  - unless column.id == positions.last.column_id
+    = link_to '&emsp;→'.html_safe, column_position_path(current_position_id, move_to: right_position(column.id, positions).id ), :method => :put

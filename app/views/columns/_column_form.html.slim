@@ -1,0 +1,28 @@
+.container
+  .row
+    .col-md-8.offset-md-2
+      br
+      br
+      br
+      .card
+        .card-header.text-center
+          card.text = title
+        .card-body
+          .container
+            - if column.errors.any?
+              #error_explanation.alert.alert-danger
+                ul
+                  - column.errors.full_messages.each do |message|
+                    li = message
+            = form_with(model: [ column.project, column ], local: true) do |f|
+              = f.label :name, "カラム名"
+              = f.text_field :name, class: "form-control"
+              br
+              - unless column.id.present?
+                = f.submit "作成", class: "btn btn-primary"
+              - else
+                .btn-toolbar
+                  .btn-group.mr-3
+                    = f.submit "更新", class: "btn btn-success"
+                  .btn-group.mr-3
+                    = link_to "削除", project_column_path, method: :delete, class: "btn btn-warning"

@@ -1,0 +1,38 @@
+.container
+  .row
+    .col-md-8.offset-md-2
+      br
+      br
+      br
+      .card
+        .card-header.text-center
+          card.text = title
+        .card-body
+          .container
+            - if card.errors.any?
+              #error_explanation.alert.alert-danger
+                ul
+                  - card.errors.full_messages.each do |message|
+                    li = message
+            = form_with(model: card, local: true) do |f|
+              = f.hidden_field :project_id
+              = f.hidden_field :column_id
+              = f.label :name, "カード名"
+              = f.text_field :name, class: "form-control"
+              br
+              .row
+                .col-md-6
+                  = f.label :due_date, "期限"
+                  = f.text_field :due_date, class: "form-control", id: "datepicker"
+                .col-md-6
+                  = f.label :assignee_id, "担当者"
+                  = f.select :assignee_id, [[ current_user.name , current_user.id]], {}, {class: 'form-control'}
+              br
+              - unless card.id.present?
+                = f.submit "作成", class: "btn btn-primary"
+              - else
+                .btn-toolbar
+                  .btn-group.mr-3
+                    = f.submit "更新", class: "btn btn-success"
+                  .btn-group.mr-3
+                    = link_to "削除", card_path, method: :delete, class: "btn btn-warning"

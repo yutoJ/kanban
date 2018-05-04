@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  column: one
+  sequence_num: 1
+
+two:
+  project: two
+  column: two
+  sequence_num: 1
