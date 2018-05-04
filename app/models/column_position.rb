@@ -7,8 +7,6 @@ class ColumnPosition < ApplicationRecord
     current_sequence_num = sequence_num
     update(sequence_num: moved_position.sequence_num)
     moved_position.update(sequence_num: current_sequence_num)
-    save
-    moved_position.save
   end
 
   def self.add_seq_record_to(column)

@@ -39,7 +39,6 @@ class CardsController < ApplicationController
     column = Column.find_by(id: params[:to])
     return redirect_to project_path(@card.project), notice: t('notice.no_column') if column.blank?
     @card.update(column_id: column.id)
-    @card.save
     redirect_to project_path(@card.project)
   end
 
