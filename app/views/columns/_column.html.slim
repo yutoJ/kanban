@@ -1,6 +1,6 @@
 .card.box
   .card-header
-    = render 'columns/column_header', { column: column, positions: positions }
+    = render 'columns/header', { column: column, positions: positions }
   .card-body
     - column.cards.reverse_each do |card|
       = render 'cards/card', { card: card, positions: positions }
