@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @columns, @positions = ColumnPosition.select_columns_related_with(@project)
+    @columns, @positions = ColumnPosition.select_columns_related_with(@project.columns)
   end
 
   def destroy

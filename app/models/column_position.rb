@@ -17,11 +17,17 @@ class ColumnPosition < ApplicationRecord
       max_num += 1
     end
     column_position = column.build_column_position
-    column_position.project_id = column.project_id
+    column_position.column.project_id = column.project_id
     column_position.sequence_num = max_num
   end
 
-  def self.select_columns_related_with(project)
+  def self.select_columns_related_with(columns)
+    sorted_columns = columns.sort{ |a,b| a.column_position.sequence_num <=> b.column_position.sequence_num }
+    positions = sorted_columns.map { |column| column.column_position }
+    [sorted_columns, positions]
+  end
+
+  def self.select_columns_related_withs(project)
     positions = project.column_positions.order(:sequence_num)
     column_ids = positions.map(&:column_id)
     [Column.find(column_ids), positions]
