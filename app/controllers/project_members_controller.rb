@@ -11,7 +11,9 @@ class ProjectMembersController < ApplicationController
   end
 
   def accept
-    # D01-5 accept
+    project_member = ProjectMember.find(params[:id])
+    project_member.update(accept: true)
+    redirect_to notification_path
   end
 
   private

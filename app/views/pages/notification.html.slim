@@ -9,7 +9,7 @@
           card.text お知らせ
         .card-body
           .container#projects
-            = render 'project_members/list', projects: @projects
+            = render 'project_members/list', projects: @projects, project_members: @project_members
           #notification-footer
             .row
               .col-md-12.grid-center

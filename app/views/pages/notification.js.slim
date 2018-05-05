@@ -1,2 +1,2 @@
-| $('#projects').append("#{escape_javascript(render 'project_members/list', projects: @projects)}");
+| $('#projects').append("#{escape_javascript(render 'project_members/list', projects: @projects, project_members: @project_members)}");
 | $("#more_link").replaceWith("#{escape_javascript(link_to_next_page @projects, 'もっと見る', remote: true, id: 'more_link', class: 'btn btn-outline-dark')}");

@@ -6,6 +6,7 @@ class Project < ApplicationRecord
   delegate :name, to: :user, prefix: true
   has_many :columns, dependent: :destroy
   has_many :cards, dependent: :destroy
+  has_many :project_members, dependent: :destroy
 
   PROJECT_COUNT_ON_FIRST_PAGE = 8
   PROJECT_COUNT_ON_EACH_AJAX = 9

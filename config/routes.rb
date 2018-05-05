@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get 'myproject', to: 'projects#myproject'
 
   resources :user, only: [:update] do
-    resources :project_members, only: %i[create accept]
+    resources :project_members, only: %i[create]
   end
 
   resources :projects do
@@ -38,4 +38,6 @@ Rails.application.routes.draw do
       get 'move'
     end
   end
+
+  get 'invitation/accept/:id', to: 'project_members#accept', as: 'invitation'
 end
