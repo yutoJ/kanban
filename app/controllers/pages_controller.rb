@@ -9,6 +9,6 @@ class PagesController < ApplicationController
   end
 
   def notification
-    # nothing
+    @projects = current_user.projects.reverse_order.page(params[:page]).per(5)
   end
 end

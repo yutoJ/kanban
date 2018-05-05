@@ -1,7 +1,9 @@
 class User < ApplicationRecord
   devise :rememberable, :trackable, :omniauthable, omniauth_providers: %i[facebook twitter github]
-  has_many :projects, dependent: :destroy
+  has_many :host_projects, dependent: :destroy, class_name: 'Project'
   has_many :cards, dependent: :nullify, class_name: 'Card', foreign_key: 'assignee_id'
+  has_many :project_members, foreign_key: 'member_id', dependent: :destroy
+  has_many :projects, through: :project_members
 
   mount_uploader :sns_image, SnsImageUploader
 

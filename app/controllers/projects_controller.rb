@@ -9,15 +9,15 @@ class ProjectsController < ApplicationController
   end
 
   def myproject
-    @projects = Project.paginate_index(current_user.projects, params[:page], request.xhr?)
+    @projects = Project.paginate_index(current_user.host_projects, params[:page], request.xhr?)
   end
 
   def new
-    @project = current_user.projects.build
+    @project = current_user.host_projects.build
   end
 
   def create
-    @project = current_user.projects.build(project_params)
+    @project = current_user.host_projects.build(project_params)
     if @project.save
       redirect_to :myproject, notice: t('notice.create_new_project')
     else
