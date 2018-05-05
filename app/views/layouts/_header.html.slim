@@ -5,11 +5,12 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light
       li.nav-item
       - if user_signed_in?
         = link_to myproject_path do
-          button.btn.btn-outline-secondary type="button" マイプロジェクト
+          button.btn.btn-outline-secondary マイプロジェクト
       li.nav-item
         input.form-control type="search" placeholder="検索"
     - if user_signed_in?
-      button.btn.btn-outline-secondary type="button" 1
+      = link_to notification_path do
+        button.btn.btn-outline-secondary 1
       div &emsp;
       = link_to mypage_path do
         = image_tag current_user.sns_image, class: "rounded-circle avatar-small"

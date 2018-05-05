@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   get 'login', to: 'pages#login'
+  get 'notification', to: 'pages#notification'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
 
