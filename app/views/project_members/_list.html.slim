@@ -1,0 +1,7 @@
+- projects.each do |project|
+  .row
+    .col-md-9.grid-center
+      = I18n.t('notification.invitation', host: project.user_name, project: project.name)
+    .col-md-3
+      .btn.btn-success 参加する
+  hr

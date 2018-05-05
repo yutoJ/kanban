@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-md-8.offset-md-2
+      br
+      br
+      br
+      .card
+        .card-header.text-center
+          card.text ユーザーを招待
+        .card-body
+          .container
+            .row
+              span ユーザを検索
+            br
+            .row
+              = form_tag invite_project_path(@project), remote: true, method: :get do
+                .input-group
+                  = text_field_tag :search, params[:search], placeholder: "ユーザ名", class: "form-control"
+                  span.input-group-btn
+                    = submit_tag "検索", class: "btn btn-outline-dark search-btn-position"
+            #user-list
+              = render 'users/invitation', users: @users, project: @project

@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_project, only: %i[show edit update destroy]
-  before_action :check_owner, only: %i[show edit update destroy]
+  before_action :set_project, only: %i[show edit update destroy invite]
+  before_action :check_owner, only: %i[show edit update destroy invite]
   before_action :project_params, only: %i[create update]
 
   def index
@@ -9,15 +9,15 @@ class ProjectsController < ApplicationController
   end
 
   def myproject
-    @projects = Project.paginate_index(current_user.projects, params[:page], request.xhr?)
+    @projects = Project.paginate_index(current_user.host_projects, params[:page], request.xhr?)
   end
 
   def new
-    @project = current_user.projects.build
+    @project = current_user.host_projects.build
   end
 
   def create
-    @project = current_user.projects.build(project_params)
+    @project = current_user.host_projects.build(project_params)
     if @project.save
       redirect_to :myproject, notice: t('notice.create_new_project')
     else
@@ -38,12 +38,16 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @columns, @positions = ColumnPosition.select_columns_related_with(@project)
+    @columns, @positions = ColumnPosition.sort_by_sequence_num(@project.columns)
   end
 
   def destroy
     @project.destroy
     redirect_to :myproject, notice: t('notice.delete_project')
+  end
+
+  def invite
+    @users = request.xhr? ? User.fuzzy_search(params[:search]) : User.all
   end
 
   private

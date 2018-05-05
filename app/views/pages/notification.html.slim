@@ -1,0 +1,16 @@
+.container
+  .row
+    .col-md-8.offset-md-2
+      br
+      br
+      br
+      .card
+        .card-header.text-center
+          card.text お知らせ
+        .card-body
+          .container#projects
+            = render 'project_members/list', projects: @projects
+          #notification-footer
+            .row
+              .col-md-12.grid-center
+                = link_to_next_page @projects, 'もっと見る', remote: true, id: 'more_link', class: 'btn btn-outline-dark'

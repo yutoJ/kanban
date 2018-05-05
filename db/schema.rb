@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180502054936) do
+ActiveRecord::Schema.define(version: 20180505022429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,13 +30,11 @@ ActiveRecord::Schema.define(version: 20180502054936) do
   end
 
   create_table "column_positions", force: :cascade do |t|
-    t.bigint "project_id", null: false
     t.bigint "column_id", null: false
     t.integer "sequence_num", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["column_id"], name: "index_column_positions_on_column_id"
-    t.index ["project_id"], name: "index_column_positions_on_project_id"
   end
 
   create_table "columns", force: :cascade do |t|
@@ -46,6 +44,16 @@ ActiveRecord::Schema.define(version: 20180502054936) do
     t.datetime "updated_at", null: false
     t.index ["name", "project_id"], name: "index_columns_on_name_and_project_id", unique: true
     t.index ["project_id"], name: "index_columns_on_project_id"
+  end
+
+  create_table "project_members", force: :cascade do |t|
+    t.integer "member_id", null: false
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id", "project_id"], name: "index_project_members_on_member_id_and_project_id", unique: true
+    t.index ["member_id"], name: "index_project_members_on_member_id"
+    t.index ["project_id"], name: "index_project_members_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -76,6 +84,6 @@ ActiveRecord::Schema.define(version: 20180502054936) do
   add_foreign_key "cards", "columns"
   add_foreign_key "cards", "projects"
   add_foreign_key "column_positions", "columns"
-  add_foreign_key "column_positions", "projects"
   add_foreign_key "columns", "projects"
+  add_foreign_key "project_members", "projects"
 end

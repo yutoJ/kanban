@@ -1,0 +1,13 @@
+- users.reject{|u| u == current_user}.each do |user|
+  br
+  .row
+    .col-md-1
+      = image_tag user.sns_image, class: "rounded-circle avatar-small"
+    .col-md-3.grid-center
+      center = user.name
+    .col-md-3
+      - unless user.projects.map(&:id).include?(project.id)
+        = link_to '招待', user_project_members_path(user, project_id: project.id), method: :post, class: 'btn btn-success'
+      - else
+        .btn.btn-secondary.disabled 招待済み
+    .col-md-5

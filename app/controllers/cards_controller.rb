@@ -1,7 +1,7 @@
 class CardsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_column, only: %i[new create]
-  before_action :set_card, only: %i[edit update destroy]
+  before_action :set_card, only: %i[edit update destroy move]
   before_action :check_owner
 
   def new
@@ -33,6 +33,13 @@ class CardsController < ApplicationController
   def destroy
     @card.destroy
     redirect_to project_path(@card.project), notice: t('notice.delete_card')
+  end
+
+  def move
+    column = Column.find_by(id: params[:to])
+    return redirect_to project_path(@card.project), notice: t('notice.no_column') if column.blank?
+    @card.update(column_id: column.id)
+    redirect_to project_path(@card.project)
   end
 
   private
