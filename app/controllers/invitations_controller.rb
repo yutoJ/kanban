@@ -10,6 +10,12 @@ class InvitationsController < ApplicationController
     redirect_to invite_project_path(@project)
   end
 
+  def accept
+    invitaion = Invitation.find(params[:id])
+    invitaion.update(accept: true)
+    redirect_to notification_path
+  end
+
   private
 
   def find_project
