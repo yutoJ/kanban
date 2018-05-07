@@ -19,4 +19,4 @@
                   span.input-group-btn
                     = submit_tag "検索", class: "btn btn-outline-dark search-btn-position"
             #user-list
-              = render 'users/invitation', users: @users
+              = render 'users/invitation', users: @users, project: @project

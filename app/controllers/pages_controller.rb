@@ -9,6 +9,6 @@ class PagesController < ApplicationController
   end
 
   def notification
-    # nothing
+    @invitations = current_user.invitations.reverse_order.page(params[:page]).per(5)
   end
 end

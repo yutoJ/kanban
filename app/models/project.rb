@@ -3,6 +3,7 @@ class Project < ApplicationRecord
   validates :description, length: { maximum: 300 }
 
   belongs_to :user
+  delegate :name, to: :user, prefix: true
   has_many :columns, dependent: :destroy
   has_many :cards, dependent: :destroy
 

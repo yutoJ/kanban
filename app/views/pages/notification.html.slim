@@ -1,3 +1,4 @@
+
 .container
   .row
     .col-md-8.offset-md-2
@@ -8,19 +9,9 @@
         .card-header.text-center
           card.text お知らせ
         .card-body
-          .container
-            .row
-              .col-md-9.grid-center
-                 a 太郎さんがxxプロジェクトに招待しています
-              .col-md-3
-                .btn.btn-success.text-right 参加
-            hr
-            .row
-              .col-md-9.grid-center
-                .grid-center 太郎さんがxxプロジェクトに招待しています
-              .col-md-3
-                .btn.btn-secondary.text-right 参加中
-            hr
+          .container#projects
+            = render 'invitations/list', invitations: @invitations
+          #notification-footer
             .row
               .col-md-12.grid-center
-                .btn.btn-outline-dark もっと見る
+                = link_to_next_page @invitations, 'もっと見る', remote: true, id: 'more_link', class: 'btn btn-outline-dark'

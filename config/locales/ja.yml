@@ -224,3 +224,5 @@ ja:
     update_card: "カードを更新しました"
     delete_card: "カードを削除しました"
     no_column: "そのカラムはこのプロジェクトに存在しません"
+  notification:
+    invitation: "%{host}さんが%{project}プロジェクトに招待しています"
