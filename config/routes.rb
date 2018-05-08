@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   get 'login', to: 'pages#login'
+  get 'notification', to: 'pages#notification'
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
 
@@ -21,11 +22,21 @@ Rails.application.routes.draw do
   get 'mypage', to: 'users#mypage'
   get 'myproject', to: 'projects#myproject'
 
-  resources :user, only: [:update]
+  resources :user, only: [:update] do
+    resources :invitations, only: %i[create]
+  end
+
   resources :projects do
     resources :columns, except: %i[index show]
+    member do
+      get 'invite'
+    end
   end
 
   resources :column_positions, only: [:update]
-  resources :cards, except: %i[index show]
+  resources :cards, except: %i[index show] do
+    member do
+      get 'move'
+    end
+  end
 end

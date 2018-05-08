@@ -50,7 +50,7 @@ ja:
     formats:
       default: "%Y/%m/%d"
       long: "%Y年%m月%d日(%a)"
-      short: "%m/%d"
+      short: "%-m月%-d日"
     month_names:
     -
     - 1月
@@ -223,3 +223,6 @@ ja:
     add_new_card: "カードを作成しました"
     update_card: "カードを更新しました"
     delete_card: "カードを削除しました"
+    no_column: "そのカラムはこのプロジェクトに存在しません"
+  notification:
+    invitation: "%{host}さんが%{project}プロジェクトに招待しています"

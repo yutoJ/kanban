@@ -3,15 +3,15 @@ class Project < ApplicationRecord
   validates :description, length: { maximum: 300 }
 
   belongs_to :user
+  delegate :name, to: :user, prefix: true
   has_many :columns, dependent: :destroy
-  has_many :column_positions, dependent: :destroy
   has_many :cards, dependent: :destroy
 
-  @project_count_on_first_page = 8
-  @project_count_on_each_ajax = 9
+  PROJECT_COUNT_ON_FIRST_PAGE = 8
+  PROJECT_COUNT_ON_EACH_AJAX = 9
 
   def self.paginate_index(projects, page_num, is_ajax)
-    paginates_per = is_ajax ? @project_count_on_each_ajax : @project_count_on_first_page
+    paginates_per = is_ajax ? PROJECT_COUNT_ON_EACH_AJAX : PROJECT_COUNT_ON_FIRST_PAGE
     projects.reverse_order.page(page_num).per(paginates_per)
   end
 end

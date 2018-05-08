@@ -22,4 +22,5 @@ yarn-debug.log*
 #
 .DS_Store
 report.html
+rails_best_practices_output.html
 *~
