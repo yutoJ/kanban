@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   end
 
   def myproject
-    @projects = Project.paginate_index(current_user.host_projects, params[:page], request.xhr?)
+    @projects = Project.paginate_myprojects_index(current_user.my_projects, params[:page], request.xhr?)
   end
 
   def new
