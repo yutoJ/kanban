@@ -14,6 +14,6 @@ class ColumnPositionsController < ApplicationController
   end
 
   def check_owner
-    redirect_to :myproject, notice: t('notice.not_owner') unless my_project?(@current_position.column.project)
+    redirect_to :myproject, alert: t('errors.messages.not_authorized') unless my_project?(@current_position.column.project)
   end
 end

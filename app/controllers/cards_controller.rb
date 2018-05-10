@@ -62,9 +62,9 @@ class CardsController < ApplicationController
 
   def check_owner
     if @column.present?
-      redirect_to :myproject, notice: t('notice.not_owner') unless my_project?(@column.project)
+      redirect_to :myproject, alert: t('errors.messages.not_authorized') unless my_project?(@column.project)
     elsif @card.present?
-      redirect_to :myproject, notice: t('notice.not_owner') unless my_project?(@card.project)
+      redirect_to :myproject, alert: t('errors.messages.not_authorized') unless my_project?(@card.project)
     end
   end
 end
