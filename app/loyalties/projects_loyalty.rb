@@ -7,6 +7,6 @@ class ProjectsLoyalty < ApplicationLoyalty
   end
 
   def show?
-    user.my_projects.map(&:id).include?(project.id)
+    host_or_attending?(project)
   end
 end

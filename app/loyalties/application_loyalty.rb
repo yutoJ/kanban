@@ -33,4 +33,8 @@ class ApplicationLoyalty
   def destroy?
     false
   end
+
+  def host_or_attending?(project)
+    user.my_projects.map(&:id).include?(project.id)
+  end
 end
