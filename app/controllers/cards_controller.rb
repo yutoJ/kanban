@@ -2,14 +2,15 @@ class CardsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_column, only: %i[new create]
   before_action :set_card, only: %i[edit update destroy move]
-  before_action :check_owner
 
   def new
+    authorize! @column.project
     @card = @column.cards.build
     @card.project_id = @column.project_id
   end
 
   def create
+    authorize! @column.project
     @card = Card.new(card_params)
     if @card.save
       redirect_to project_path(@card.project_id), notice: t('notice.add_new_card')
@@ -19,10 +20,11 @@ class CardsController < ApplicationController
   end
 
   def edit
-    # only before action
+    authorize! @card.column.project
   end
 
   def update
+    authorize! @card.column.project
     if @card.update(card_params)
       redirect_to project_path(@card.project), notice: t('notice.update_card')
     else
@@ -31,12 +33,14 @@ class CardsController < ApplicationController
   end
 
   def destroy
+    authorize! @card.column.project
     @card.destroy
     redirect_to project_path(@card.project), notice: t('notice.delete_card')
   end
 
   def move
     column = Column.find_by(id: params[:to])
+    authorize! column.project
     return redirect_to project_path(@card.project), notice: t('notice.no_column') if column.blank?
     @card.update(column_id: column.id)
     redirect_to project_path(@card.project)
@@ -58,13 +62,5 @@ class CardsController < ApplicationController
 
   def set_card
     @card = Card.find(params[:id])
-  end
-
-  def check_owner
-    if @column.present?
-      redirect_to :myproject, alert: t('errors.messages.not_authorized') unless my_project?(@column.project)
-    elsif @card.present?
-      redirect_to :myproject, alert: t('errors.messages.not_authorized') unless my_project?(@card.project)
-    end
   end
 end
