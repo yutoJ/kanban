@@ -25,4 +25,8 @@ class CardsLoyalty < ApplicationLoyalty
   def destroy?
     host_or_attending?(project)
   end
+
+  def move?
+    host_or_attending?(project)
+  end
 end

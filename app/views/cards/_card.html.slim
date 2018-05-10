@@ -3,15 +3,16 @@
     .container
       .row
         .col-md-3.grid-center
-          - unless first_column?(card, positions)
+          - unless card.first_column?(positions)
             = link_to '', move_card_path(card, to: left_position(card.column_id, positions).id ), class: 'fa fa-arrow-left'
         .col-md-6.grid-center
           label = link_to card.name, edit_card_path(card)
         .col-md-3.grid-center
-          - unless last_column?(card, positions)
+          - unless card.last_column?(positions)
             = link_to '', move_card_path(card, to: right_position(card.column_id, positions).id ), class: 'fa fa-arrow-right'
       .row
         .col-md-6.grid-center
-          small.text-muted = I18n.l(card.due_date, format: :short)
+          - if card.due_date.present?
+            small.text-muted = I18n.l(card.due_date, format: :short)
         .col-md-6.grid-center
           = image_tag current_user.sns_image, class: "rounded-circle avatar-small"
