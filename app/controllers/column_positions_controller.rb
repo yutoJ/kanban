@@ -12,8 +12,4 @@ class ColumnPositionsController < ApplicationController
   def set_column_position
     @current_position = ColumnPosition.find(params[:id])
   end
-
-  def check_owner
-    redirect_to :myproject, alert: t('errors.messages.not_authorized') unless my_project?(@current_position.column.project)
-  end
 end

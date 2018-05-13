@@ -10,23 +10,25 @@ class ProjectsLoyalty < ApplicationLoyalty
     host_or_attending?(project)
   end
 
-  def new?
-    host_or_attending?(project)
-  end
-
-  def create?
-    host_or_attending?(project)
-  end
-
   def edit?
-    host_or_attending?(project)
+    my_project?
   end
 
   def update?
-    host_or_attending?(project)
+    my_project?
   end
 
   def destroy?
-    host_or_attending?(project)
+    my_project?
+  end
+
+  def invite?
+    my_project?
+  end
+
+  private
+
+  def my_project?
+    project.user_id == user.id
   end
 end

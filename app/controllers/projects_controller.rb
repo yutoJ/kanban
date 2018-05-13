@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project, only: %i[show edit update destroy invite]
-  before_action :check_owner, only: %i[edit update destroy invite]
+  before_action :check_auth, only: %i[show edit update destroy invite]
   before_action :project_params, only: %i[create update]
 
   def index
@@ -38,7 +38,6 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    authorize! @project
     @columns, @positions = ColumnPosition.sort_by_sequence_num(@project.columns)
   end
 
@@ -61,7 +60,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
-  def check_owner
-    redirect_to :myproject, alert: t('errors.messages.not_authorized') unless my_project?(@project)
+  def check_auth
+    authorize! @project
   end
 end
