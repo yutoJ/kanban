@@ -8,19 +8,12 @@
         .card-header.text-center
           card.text ログ
         .card-body
-          .container#projects
-            .row
-              .col-md-12
-                div ●太郎さんがカードを[カード名]作成しました
-            hr
-            .row
-              .col-md-12
-                div ●太郎さんがカードを[カード名]作成しました
-            hr
-            .row
-              .col-md-12
-                div ●太郎さんがxxプロジェクトに招待してます
-            hr
+          .container#logs
+            - @logs.each do |log|
+              .row
+                .col-md-12
+                  = log.message
+              hr
           #list-diagram-footer
             .row
               .col-md-12.grid-center

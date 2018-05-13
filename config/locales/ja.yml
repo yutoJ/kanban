@@ -227,3 +227,19 @@ ja:
     no_column: "そのカラムはこのプロジェクトに存在しません"
   notification:
     invitation: "%{host}さんが%{project}プロジェクトに招待しています"
+  log:
+    column:
+      create: "%{user}さんがカラムを作成しました"
+      update: "%{user}さんがカラムを編集しました"
+      destroy: "%{user}さんがカラムを削除しました"
+    card:
+      create: "%{user}さんがカードを作成しました"
+      update: "%{user}さんがカードを編集しました"
+      destroy: "%{user}さんがカードを削除しました"
+      assign: "%{user}さんがカード「%{card}」を%{assginee}さんにアサインしました"
+      move: "%{user}さんがカード「%{card}」をカラム「%{column}」に移動しました"
+      deadline: "本日がカード「%{card}」の締切期限です"
+      overdue: "カード「%{card}」の締切期限が過ぎました"
+    invitation:
+      invite: "%{user}さんが%{assignee}さんをこのプロジェクトに招待しました"
+      accept: "%{user}さんがこのプロジェクトに参加しました"

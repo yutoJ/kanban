@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
   end
 
   def logs
-    # only before action
+    @logs = ProjectLog.where(project_id: @project.id)
   end
 
   private
