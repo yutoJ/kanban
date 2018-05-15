@@ -26,10 +26,9 @@ class CardsController < ApplicationController
 
   def update
     @card.assign_attributes(card_params)
-    change_assign = @card.changed.include?("assignee_id")
+    is_changed_assign_user = @card.changed.include?('assignee_id')
     if @card.save
-      ProjectLog.add_assign_log(params[:controller], current_user, @card) if change_assign
-      ProjectLog.add_log(params[:controller], params[:action], current_user, @card.column.project) unless change_assign
+      ProjectLog.add_card_update_log(params[:controller], params[:action], current_user, @card, is_changed_assign_user)
       redirect_to project_path(@card.project), notice: t('notice.update_card')
     else
       render :edit

@@ -1,7 +1,9 @@
 class Card < ApplicationRecord
   belongs_to :project
   belongs_to :column
+  delegate :name, to: :column, prefix: true
   belongs_to :assignee, class_name: 'User'
+  delegate :name, to: :assignee, prefix: true
 
   validates :name, presence: true, length: { maximum: 40 }
 
