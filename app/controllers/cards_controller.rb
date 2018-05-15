@@ -7,11 +7,13 @@ class CardsController < ApplicationController
   def new
     @card = @column.cards.build
     @card.project_id = @column.project_id
+    @members = @column.project.members
   end
 
   def create
     @card = Card.new(card_params)
     if @card.save
+      ProjectLog.add_log(params[:controller], params[:action], current_user, @column.project)
       redirect_to project_path(@card.project_id), notice: t('notice.add_new_card')
     else
       render :new
@@ -19,11 +21,15 @@ class CardsController < ApplicationController
   end
 
   def edit
-    # only before action
+    @members = @card.project.members
   end
 
   def update
-    if @card.update(card_params)
+    @card.assign_attributes(card_params)
+    change_assign = @card.changed.include?("assignee_id")
+    if @card.save
+      ProjectLog.add_assign_log(params[:controller], current_user, @card) if change_assign
+      ProjectLog.add_log(params[:controller], params[:action], current_user, @card.column.project) unless change_assign
       redirect_to project_path(@card.project), notice: t('notice.update_card')
     else
       render :edit
@@ -32,12 +38,14 @@ class CardsController < ApplicationController
 
   def destroy
     @card.destroy
+    ProjectLog.add_log(params[:controller], params[:action], current_user, @card.column.project)
     redirect_to project_path(@card.project), notice: t('notice.delete_card')
   end
 
   def move
     return redirect_to project_path(@card.project), notice: t('notice.no_column') if @column.blank?
     @card.update(column_id: @column.id)
+    ProjectLog.add_move_card_log(params[:controller], params[:action], current_user, @card)
     redirect_to project_path(@card.project)
   end
 

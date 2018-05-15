@@ -11,7 +11,7 @@ class ColumnsController < ApplicationController
   def create
     @column = @project.columns.build(column_params)
     if @column.save_with_column_position
-      ProjectLog.add_log(@project, I18n.t('log.column.create', user: current_user.name))
+      ProjectLog.add_log(params[:controller], params[:action], current_user, @project)
       redirect_to project_path(@project), notice: t('notice.create_column')
     else
       render :new
@@ -24,7 +24,7 @@ class ColumnsController < ApplicationController
 
   def update
     if @column.update(column_params)
-      ProjectLog.add_log(@column.project, I18n.t('log.column.update', user: current_user.name))
+      ProjectLog.add_log(params[:controller], params[:action], current_user, @column.project)
       redirect_to project_path(@column.project), notice: t('notice.update_column')
     else
       render :edit
@@ -33,7 +33,7 @@ class ColumnsController < ApplicationController
 
   def destroy
     @column.destroy
-    ProjectLog.add_log(@column.project, I18n.t('log.column.destroy', user: current_user.name))
+    ProjectLog.add_log(params[:controller], params[:action], current_user, @column.project)
     redirect_to project_path(@column.project), notice: t('notice.delete_column')
   end
 

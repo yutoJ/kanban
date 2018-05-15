@@ -218,7 +218,7 @@ ja:
     update_project: "あなたのプロジェクトを更新しました"
     not_owner: "あなたのプロジェクトではありません"
     delete_project: "あなたのプロジェクトを削除しました"
-    add_new_column: "新しいカラムを追加しました"
+    create_column: "新しいカラムを追加しました"
     update_column: "カラムを更新しました"
     delete_column: "カラムを削除しました"
     add_new_card: "カードを作成しました"
@@ -228,11 +228,11 @@ ja:
   notification:
     invitation: "%{host}さんが%{project}プロジェクトに招待しています"
   log:
-    column:
+    columns:
       create: "%{user}さんがカラムを作成しました"
       update: "%{user}さんがカラムを編集しました"
       destroy: "%{user}さんがカラムを削除しました"
-    card:
+    cards:
       create: "%{user}さんがカードを作成しました"
       update: "%{user}さんがカードを編集しました"
       destroy: "%{user}さんがカードを削除しました"
@@ -240,6 +240,6 @@ ja:
       move: "%{user}さんがカード「%{card}」をカラム「%{column}」に移動しました"
       deadline: "本日がカード「%{card}」の締切期限です"
       overdue: "カード「%{card}」の締切期限が過ぎました"
-    invitation:
-      invite: "%{user}さんが%{assignee}さんをこのプロジェクトに招待しました"
+    invitations:
+      create: "%{user}さんが%{assignee}さんをこのプロジェクトに招待しました"
       accept: "%{user}さんがこのプロジェクトに参加しました"
