@@ -1,5 +1,11 @@
 class ProjectLog < ApplicationRecord
   belongs_to :project
+  PROJECT_PAGENATE_COUNT = 5
+
+  def self.paginate_index(project, page_num)
+    ProjectLog.where(project_id: project.id).reverse_order.page(page_num).per(PROJECT_PAGENATE_COUNT)
+  end
+
   def self.add_log(controller, action, user, project)
     ProjectLog.create(project_id: project.id, message: I18n.t("log.#{controller}.#{action}", user: user.name))
   end

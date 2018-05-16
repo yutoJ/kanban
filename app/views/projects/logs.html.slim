@@ -9,11 +9,7 @@
           card.text ログ
         .card-body
           .container#logs
-            - @logs.each do |log|
-              .row
-                .col-md-12
-                  = log.message
-              hr
+            = render 'logs/list', logs: @logs
           #list-diagram-footer
             .row
               .col-md-12.grid-center

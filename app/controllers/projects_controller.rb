@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
   end
 
   def logs
-    @logs = ProjectLog.where(project_id: @project.id)
+    @logs = ProjectLog.paginate_index(@project, params[:page])
   end
 
   private
