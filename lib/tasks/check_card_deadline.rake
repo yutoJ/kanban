@@ -1,6 +1,5 @@
 require 'date'
 namespace :check_card_deadline do
-  desc 'TODO'
   task check_and_update: :environment do
     cards = Card.all
     today = Time.zone.today
