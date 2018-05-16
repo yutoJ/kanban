@@ -13,9 +13,9 @@ class InvitationsController < ApplicationController
   end
 
   def accept
-    authorize! invitaion
-    invitaion.update(accept: true)
-    ProjectLog.add_attend_log(params[:controller], params[:action], current_user, invitaion)
+    authorize! @invitaion
+    @invitaion.update(accept: true)
+    ProjectLog.add_attend_log(params[:controller], params[:action], current_user, @invitaion)
     redirect_to notification_path
   end
 
