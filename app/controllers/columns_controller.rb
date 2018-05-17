@@ -1,8 +1,8 @@
 class ColumnsController < ApplicationController
   before_action :authenticate_user!
-  before_action :column_params, only: %i[create update]
   before_action :find_project, only: %i[new create]
   before_action :set_columns, only: %i[edit update destroy]
+  before_action :check_auth
 
   def new
     @column = @project.columns.build
@@ -46,5 +46,13 @@ class ColumnsController < ApplicationController
 
   def set_columns
     @column = Column.find(params[:id])
+  end
+
+  def check_auth
+    if @project.present?
+      authorize! @project
+    elsif @column.present?
+      authorize! @column.project
+    end
   end
 end

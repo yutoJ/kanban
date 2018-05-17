@@ -2,14 +2,15 @@
   .row
     .col-md-6
       br
-      h1 = @project.name
+      h1 = link_to @project.name, edit_project_path(@project)
     .col-md-6
       br
       .btn-toolbar.float-right
         .btn-group.mr-3
           = link_to "ログを見る", "#", class: "btn btn-primary"
         .btn-group
-          = link_to_if  my_project?(@project), "ユーザーを招待", invite_project_path(@project), class: "btn btn-primary"
+          - if my_project?(@project)
+            = link_to "ユーザーを招待", invite_project_path(@project), class: "btn btn-primary"
 .scroll-wrapper
   .scroll-inner
     - @columns.each do |column|

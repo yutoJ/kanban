@@ -3,11 +3,17 @@ class User < ApplicationRecord
   has_many :host_projects, dependent: :destroy, class_name: 'Project'
   has_many :cards, dependent: :nullify, class_name: 'Card', foreign_key: 'assignee_id'
   has_many :invitations, foreign_key: 'invitee_id', dependent: :destroy
-  has_many :projects, through: :invitations
 
   mount_uploader :sns_image, SnsImageUploader
 
   scope :fuzzy_search, ->(name) { where('name LIKE(?)', "%#{name}%") }
+
+  def my_projects
+    attending_project_ids = invitations.where(accept: true).map(&:project_id)
+    host_project_ids = host_projects.map(&:id)
+    my_project_ids = attending_project_ids + host_project_ids
+    Project.find(my_project_ids)
+  end
 
   def self.find_for_auth(auth)
     user = User.find_by(provider: auth.provider, uid: auth.uid)

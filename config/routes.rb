@@ -39,4 +39,6 @@ Rails.application.routes.draw do
       get 'move'
     end
   end
+
+  get 'invitations/:id/accept', to: 'invitations#accept', as: 'invitation'
 end

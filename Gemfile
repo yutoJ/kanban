@@ -23,6 +23,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
+gem 'banken'
 # view
 gem 'cloudinary'
 gem 'carrierwave'

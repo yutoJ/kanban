@@ -43,6 +43,8 @@ GEM
     arel (8.0.0)
     ast (2.4.0)
     aws_cf_signer (0.1.3)
+    banken (1.0.2)
+      activesupport (>= 3.0.0)
     bcrypt (3.1.11)
     better_errors (2.4.0)
       coderay (>= 1.0.0)
@@ -330,6 +332,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  banken
   better_errors
   binding_of_caller
   byebug

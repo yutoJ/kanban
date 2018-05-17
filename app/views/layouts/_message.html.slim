@@ -1,2 +1,5 @@
 - unless flash.empty?
-  center.alert.alert-info = h(flash[:notice])
+  - unless flash[:notice].nil?
+    center.alert.alert-info = h(flash[:notice])
+  - unless flash[:alert].nil?
+    center.alert.alert-danger = h(flash[:alert])

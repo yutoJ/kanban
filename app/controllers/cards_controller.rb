@@ -1,8 +1,8 @@
 class CardsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_column, only: %i[new create]
+  before_action :find_column, only: %i[new create move]
   before_action :set_card, only: %i[edit update destroy move]
-  before_action :check_owner
+  before_action :check_auth
 
   def new
     @card = @column.cards.build
@@ -36,9 +36,8 @@ class CardsController < ApplicationController
   end
 
   def move
-    column = Column.find_by(id: params[:to])
-    return redirect_to project_path(@card.project), notice: t('notice.no_column') if column.blank?
-    @card.update(column_id: column.id)
+    return redirect_to project_path(@card.project), notice: t('notice.no_column') if @column.blank?
+    @card.update(column_id: @column.id)
     redirect_to project_path(@card.project)
   end
 
@@ -49,6 +48,8 @@ class CardsController < ApplicationController
       @column = Column.find(params[:column_id])
     elsif params[:card][:column_id].present?
       @column = Column.find(params[:card][:column_id])
+    elsif params[:to].present?
+      @column = Column.find(params[:to])
     end
   end
 
@@ -60,11 +61,11 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
   end
 
-  def check_owner
+  def check_auth
     if @column.present?
-      redirect_to :myproject, notice: t('notice.not_owner') unless my_project?(@column.project)
+      authorize! @column.project
     elsif @card.present?
-      redirect_to :myproject, notice: t('notice.not_owner') unless my_project?(@card.project)
+      authorize! @card.column.project
     end
   end
 end

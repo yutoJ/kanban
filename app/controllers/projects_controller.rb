@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project, only: %i[show edit update destroy invite]
-  before_action :check_owner, only: %i[show edit update destroy invite]
+  before_action :check_auth, only: %i[show edit update destroy invite]
   before_action :project_params, only: %i[create update]
 
   def index
@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   end
 
   def myproject
-    @projects = Project.paginate_index(current_user.host_projects, params[:page], request.xhr?)
+    @projects = Project.paginate_myprojects_index(current_user.my_projects, params[:page], request.xhr?)
   end
 
   def new
@@ -60,7 +60,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
-  def check_owner
-    redirect_to :myproject, notice: t('notice.not_owner') unless my_project?(@project)
+  def check_auth
+    authorize! @project
   end
 end

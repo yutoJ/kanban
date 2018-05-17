@@ -6,6 +6,7 @@ class Project < ApplicationRecord
   delegate :name, to: :user, prefix: true
   has_many :columns, dependent: :destroy
   has_many :cards, dependent: :destroy
+  has_many :invitations, dependent: :destroy
 
   PROJECT_COUNT_ON_FIRST_PAGE = 8
   PROJECT_COUNT_ON_EACH_AJAX = 9
@@ -13,5 +14,10 @@ class Project < ApplicationRecord
   def self.paginate_index(projects, page_num, is_ajax)
     paginates_per = is_ajax ? PROJECT_COUNT_ON_EACH_AJAX : PROJECT_COUNT_ON_FIRST_PAGE
     projects.reverse_order.page(page_num).per(paginates_per)
+  end
+
+  def self.paginate_myprojects_index(projects, page_num, is_ajax)
+    paginates_per = is_ajax ? PROJECT_COUNT_ON_EACH_AJAX : PROJECT_COUNT_ON_FIRST_PAGE
+    Kaminari.paginate_array(projects.reverse).page(page_num).per(paginates_per)
   end
 end
