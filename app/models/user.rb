@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   def delegate_host_projects_auth
     host_projects.map do |project|
-      project.update(user_id: project.members[1].id ) if project.members[1].present?
+      project.update(user_id: project.members[1].id) if project.members[1].present?
     end
   end
 
