@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_project, only: %i[show edit update destroy invite]
-  before_action :check_auth, only: %i[show edit update destroy invite]
+  before_action :set_project, only: %i[show edit update destroy invite logs]
+  before_action :check_auth, only: %i[show edit update destroy invite logs]
   before_action :project_params, only: %i[create update]
 
   def index
@@ -48,6 +48,10 @@ class ProjectsController < ApplicationController
 
   def invite
     @users = request.xhr? ? User.fuzzy_search(params[:search]) : User.all
+  end
+
+  def logs
+    # only before action
   end
 
   private

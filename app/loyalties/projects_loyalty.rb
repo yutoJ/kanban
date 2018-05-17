@@ -26,6 +26,10 @@ class ProjectsLoyalty < ApplicationLoyalty
     my_project?
   end
 
+  def logs?
+    host_or_attending?(project)
+  end
+
   private
 
   def my_project?

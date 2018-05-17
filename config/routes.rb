@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :columns, except: %i[index show]
     member do
       get 'invite'
+      get 'logs'
     end
   end
 
