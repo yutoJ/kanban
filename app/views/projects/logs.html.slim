@@ -13,4 +13,4 @@
           #list-diagram-footer
             .row
               .col-md-12.grid-center
-                = link_to 'もっと見る', '#', remote: true, id: 'more_link', class: 'btn btn-outline-dark'
+                = link_to_next_page @logs, 'もっと見る', remote: true, id: 'more_link', class: 'btn btn-outline-dark'
