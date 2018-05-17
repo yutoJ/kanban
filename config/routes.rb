@@ -15,14 +15,13 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'logout', to: 'devise/sessions#destroy'
-    get 'leave', to: 'devise/registrations#destroy'
-
+    get 'leave', to: 'users/registrations#destroy'
   end
 
   get 'mypage', to: 'users#mypage'
   get 'myproject', to: 'projects#myproject'
 
-  resources :user, only: [:update] do
+  resources :user, only: %i[update destroy] do
     resources :invitations, only: %i[create]
   end
 

@@ -15,6 +15,12 @@ class User < ApplicationRecord
     Project.find(my_project_ids)
   end
 
+  def delegate_host_projects_auth
+    host_projects.map do |project|
+      project.update(user_id: project.members[1].id ) if project.members[1].present?
+    end
+  end
+
   def self.find_for_auth(auth)
     user = User.find_by(provider: auth.provider, uid: auth.uid)
     user
