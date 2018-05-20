@@ -3,7 +3,8 @@ FactoryBot.define do
     column
     project { column.project }
     due_date Date.new(2018, 5, 20)
-    name 'TO'
+    sequence(:name) { |n| "ISSUE#{n}" }
+    association :assignee, factory: :user
     user { project.user }
   end
 end
