@@ -30,7 +30,7 @@ RSpec.describe ColumnPosition, type: :model do
       project = create(:project)
       first_column = create(:column, project: project.reload)
       second_column = create(:column, project: project.reload)
-      sorted_columns, _ = ColumnPosition.sort_by_sequence_num([second_column, first_column])
+      sorted_columns, = ColumnPosition.sort_by_sequence_num([second_column, first_column])
       expect(sorted_columns).to eq [first_column, second_column]
     end
   end
