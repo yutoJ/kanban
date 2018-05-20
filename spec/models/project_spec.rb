@@ -26,7 +26,7 @@ RSpec.describe Project, type: :model do
 
   describe 'class method' do
     it 'paginate_index' do
-      projects = [*(1..9)].map { |n| create(:project) }
+      projects = 9.times.map { create(:project) }
       expect(Project.paginate_myprojects_index(projects, 1, true).count).to eq 9
       expect(Project.paginate_myprojects_index(projects, 2, true).count).to eq 0
       expect(Project.paginate_myprojects_index(projects, 1, false).count).to eq 8
@@ -35,7 +35,7 @@ RSpec.describe Project, type: :model do
 
     it 'paginate_myprojects_index' do
       host = create(:user)
-      projects = [*(1..9)].map { |n| create(:project, user: host) }
+      projects = 9.times.map { create(:project, user: host) }
       expect(Project.paginate_myprojects_index(projects, 1, true).count).to eq 9
       expect(Project.paginate_myprojects_index(projects, 2, true).count).to eq 0
       expect(Project.paginate_myprojects_index(projects, 1, false).count).to eq 8
