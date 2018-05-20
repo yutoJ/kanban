@@ -27,6 +27,7 @@ gem 'banken'
 # view
 gem 'cloudinary'
 gem 'carrierwave'
+gem 'rack-dev-mark'
 # functional
 gem 'kaminari'
 # non-functional
