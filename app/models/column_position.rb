@@ -1,5 +1,7 @@
 class ColumnPosition < ApplicationRecord
   belongs_to :column
+  validates :column_id, presence: true
+  validates :sequence_num, presence: true
 
   def change_position(move_to)
     moved_position = ColumnPosition.find(move_to)

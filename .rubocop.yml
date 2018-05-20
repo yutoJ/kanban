@@ -24,6 +24,7 @@ Metrics/LineLength:
 Rails/UnknownEnv:
   Environments:
     - staging
+    - production
 
 Rails/InverseOf:
   Enabled: false

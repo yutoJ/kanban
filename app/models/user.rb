@@ -2,6 +2,9 @@ class User < ApplicationRecord
   devise :rememberable, :trackable, :omniauthable, omniauth_providers: %i[facebook twitter github]
   before_destroy :delegate_host_projects_auth
 
+  validates :name, presence: true
+  validates :uid, presence: true
+
   has_many :host_projects, dependent: :destroy, class_name: 'Project'
   has_many :cards, dependent: :nullify, class_name: 'Card', foreign_key: 'assignee_id'
   has_many :invitations, foreign_key: 'invitee_id', dependent: :destroy

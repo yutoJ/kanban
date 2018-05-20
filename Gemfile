@@ -41,6 +41,9 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'byebug'
   gem 'pry-rails'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -54,6 +57,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'rails_best_practices'
+  gem 'spring-commands-rspec'
 end
 
 group :production, :staging do

@@ -3,6 +3,7 @@ class Column < ApplicationRecord
 
   belongs_to :project
   validates :name, presence: true, length: { maximum: 40 }
+  validates :project_id, presence: true
 
   has_one :column_position, dependent: :destroy
   has_many :cards, dependent: :destroy
