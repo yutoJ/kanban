@@ -1,6 +1,9 @@
 class Invitation < ApplicationRecord
   attr_accessor :user
 
+  validates :invitee_id, presence: true
+  validates :project_id, presence: true
+
   belongs_to :project
   delegate :name, to: :project, prefix: true
   delegate :user_name, to: :project, prefix: true

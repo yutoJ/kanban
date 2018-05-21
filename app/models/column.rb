@@ -3,9 +3,14 @@ class Column < ApplicationRecord
 
   belongs_to :project
   validates :name, presence: true, length: { maximum: 40 }
+  validates :project_id, presence: true
 
   has_one :column_position, dependent: :destroy
   has_many :cards, dependent: :destroy
+
+  before_create do
+    ColumnPosition.add_seq_record_to(self)
+  end
 
   after_create do
     add_log('log.columns.create')
@@ -17,11 +22,6 @@ class Column < ApplicationRecord
 
   after_destroy do
     add_log('log.columns.destroy')
-  end
-
-  def save_with_column_position
-    ColumnPosition.add_seq_record_to(self)
-    save
   end
 
   private

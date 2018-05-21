@@ -9,6 +9,8 @@ class Card < ApplicationRecord
   delegate :sns_image, to: :assignee, prefix: true
 
   validates :name, presence: true, length: { maximum: 40 }
+  validates :project_id, presence: true
+  validates :column_id, presence: true
 
   after_create do
     add_log('log.cards.create')

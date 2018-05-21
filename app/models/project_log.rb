@@ -1,5 +1,6 @@
 class ProjectLog < ApplicationRecord
   belongs_to :project
+  validates :project_id, presence: true
   PROJECT_PAGENATE_COUNT = 5
 
   def self.paginate_index(project, page_num)

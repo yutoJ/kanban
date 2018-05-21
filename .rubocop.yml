@@ -24,6 +24,7 @@ Metrics/LineLength:
 Rails/UnknownEnv:
   Environments:
     - staging
+    - production
 
 Rails/InverseOf:
   Enabled: false
@@ -33,3 +34,7 @@ Metrics/AbcSize:
 
 Metrics/MethodLength:
   Max: 15
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
