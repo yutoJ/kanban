@@ -1,0 +1,2 @@
+| $('#logs').append("#{escape_javascript(render 'logs/list', logs: @logs)}");
+| $("#more_link").replaceWith("#{escape_javascript(link_to_next_page(@logs, 'もっと見る', remote: true, id: 'more_link', class: 'btn btn-outline-dark'))}");

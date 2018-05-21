@@ -8,20 +8,9 @@
         .card-header.text-center
           card.text ログ
         .card-body
-          .container#projects
-            .row
-              .col-md-12
-                div ●太郎さんがカードを[カード名]作成しました
-            hr
-            .row
-              .col-md-12
-                div ●太郎さんがカードを[カード名]作成しました
-            hr
-            .row
-              .col-md-12
-                div ●太郎さんがxxプロジェクトに招待してます
-            hr
+          .container#logs
+            = render 'logs/list', logs: @logs
           #list-diagram-footer
             .row
               .col-md-12.grid-center
-                = link_to 'もっと見る', '#', remote: true, id: 'more_link', class: 'btn btn-outline-dark'
+                = link_to_next_page @logs, 'もっと見る', remote: true, id: 'more_link', class: 'btn btn-outline-dark'
