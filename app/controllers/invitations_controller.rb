@@ -7,15 +7,14 @@ class InvitationsController < ApplicationController
     user = User.find(params[:user_id])
     invitation = user.invitations.build(project_id: @project.id)
     authorize! invitation
+    invitation.user = current_user
     invitation.save
-    ProjectLog.add_invite_log(params[:controller], params[:action], current_user, invitation)
     redirect_to invite_project_path(@project)
   end
 
   def accept
     authorize! @invitaion
     @invitaion.update(accept: true)
-    ProjectLog.add_attend_log(params[:controller], params[:action], current_user, @invitaion)
     redirect_to notification_path
   end
 

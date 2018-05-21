@@ -12,8 +12,8 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
+    @card.user = current_user
     if @card.save
-      ProjectLog.add_log(params[:controller], params[:action], current_user, @column.project)
       redirect_to project_path(@card.project_id), notice: t('notice.add_new_card')
     else
       render :new
@@ -26,9 +26,8 @@ class CardsController < ApplicationController
 
   def update
     @card.assign_attributes(card_params)
-    is_changed_assign_user = @card.changed.include?('assignee_id')
+    @card.user = current_user
     if @card.save
-      ProjectLog.add_card_update_log(params[:controller], params[:action], current_user, @card, is_changed_assign_user)
       redirect_to project_path(@card.project), notice: t('notice.update_card')
     else
       render :edit
@@ -36,15 +35,15 @@ class CardsController < ApplicationController
   end
 
   def destroy
+    @card.user = current_user
     @card.destroy
-    ProjectLog.add_log(params[:controller], params[:action], current_user, @card.column.project)
     redirect_to project_path(@card.project), notice: t('notice.delete_card')
   end
 
   def move
     return redirect_to project_path(@card.project), notice: t('notice.no_column') if @column.blank?
+    @card.current_user
     @card.update(column_id: @column.id)
-    ProjectLog.add_move_card_log(params[:controller], params[:action], current_user, @card)
     redirect_to project_path(@card.project)
   end
 
