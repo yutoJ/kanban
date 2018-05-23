@@ -36,6 +36,12 @@ describe ProjectsController do
         expect(response).to redirect_to(myproject_path)
       end
 
+      it 'fails to create an invalid project' do
+        project_params = { name: '', description: '' }
+        post :create, params: { project: project_params }
+        expect(response).to render_template :new
+      end
+
       it 'edit new project' do
         project = create(:project, user: user)
         get :edit, params: { id: project.id }
@@ -49,6 +55,13 @@ describe ProjectsController do
         expect([assigns(:project).name, assigns(:project).description]).to eq [project_params[:name], project_params[:description]]
         expect(assigns(:project)).to eq Project.find(project.id)
         expect(response).to redirect_to(myproject_path)
+      end
+
+      it 'fails to update an invalid project' do
+        project = create(:project, user: user)
+        project_params = { name: '', description: '' }
+        put :update, params: { id: project.id, project: project_params }
+        expect(response).to render_template :edit
       end
 
       it 'shows a project' do
