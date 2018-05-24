@@ -42,7 +42,7 @@ class CardsController < ApplicationController
 
   def move
     return redirect_to project_path(@card.project), notice: t('notice.no_column') if @column.blank?
-    @card.current_user
+    @card.user = current_user
     @card.update(column_id: @column.id)
     redirect_to project_path(@card.project)
   end
@@ -52,10 +52,10 @@ class CardsController < ApplicationController
   def find_column
     if params[:column_id].present?
       @column = Column.find(params[:column_id])
-    elsif params[:card][:column_id].present?
-      @column = Column.find(params[:card][:column_id])
     elsif params[:to].present?
       @column = Column.find(params[:to])
+    elsif params[:card][:column_id].present?
+      @column = Column.find(params[:card][:column_id])
     end
   end
 
