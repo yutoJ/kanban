@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ProjectsController do
-  describe 'GET index' do
+  describe 'all path' do
     context 'without auth' do
       it 'gets projects list' do
         2.times { create(:project) }
