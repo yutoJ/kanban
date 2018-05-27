@@ -4,7 +4,7 @@ class Card < ApplicationRecord
   belongs_to :project
   belongs_to :column
   delegate :name, to: :column, prefix: true
-  belongs_to :assignee, class_name: 'User'
+  belongs_to :assignee, class_name: 'User', optional: true
   delegate :name, to: :assignee, prefix: true
   delegate :sns_image, to: :assignee, prefix: true
 

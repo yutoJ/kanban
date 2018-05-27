@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @columns, @positions = ColumnPosition.sort_by_sequence_num(@project.columns)
+    @columns, @positions = ColumnPosition.sort_by_sequence_num(@project.columns.includes([:column_position, :cards, cards: :assignee]))
   end
 
   def destroy
@@ -47,7 +47,7 @@ class ProjectsController < ApplicationController
   end
 
   def invite
-    @users = request.xhr? ? User.fuzzy_search(params[:search]) : User.all
+    @users = request.xhr? ? User.fuzzy_search(params[:search]).includes(:invitations) : User.all.includes(:invitations).reject { |u| u == current_user }
   end
 
   def logs

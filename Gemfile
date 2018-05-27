@@ -38,13 +38,14 @@ gem 'slim-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  gem 'byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
+  gem 'guard-rspec', require: false
+  gem 'spring-commands-rspec'
 end
 
 group :development do
@@ -58,7 +59,12 @@ group :development do
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'rails_best_practices'
-  gem 'spring-commands-rspec'
+  gem 'pry-byebug'
+  gem 'bullet'
+end
+
+group :test do
+  gem 'capybara', '~> 2.13'
 end
 
 group :production, :staging do

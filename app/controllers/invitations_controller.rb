@@ -13,8 +13,8 @@ class InvitationsController < ApplicationController
   end
 
   def accept
-    authorize! @invitaion
-    @invitaion.update(accept: true)
+    authorize! @invitation
+    @invitation.update(accept: true)
     redirect_to notification_path
   end
 
@@ -25,6 +25,6 @@ class InvitationsController < ApplicationController
   end
 
   def find_invitaion
-    @invitaion = Invitation.find(params[:id])
+    @invitation = Invitation.find(params[:id])
   end
 end
