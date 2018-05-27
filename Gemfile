@@ -60,6 +60,7 @@ group :development do
   gem 'meta_request'
   gem 'rails_best_practices'
   gem 'pry-byebug'
+  gem 'bullet'
 end
 
 group :test do

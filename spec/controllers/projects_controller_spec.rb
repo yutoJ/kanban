@@ -67,7 +67,7 @@ describe ProjectsController do
       it 'shows a project' do
         project = create(:project, user: user)
         columns = Array.new(2) { create(:column, project: project) }
-        positions = columns.map { |column| create(:column_position, column: column) }
+        positions = columns.map(&:column_position)
         get :show, params: { id: project.id }
         expect(assigns(:project)).to eq project
         expect(assigns(:columns)).to eq columns
