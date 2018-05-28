@@ -5,6 +5,6 @@ class PagesController < ApplicationController
   end
 
   def notification
-    @invitations = current_user.invitations.reverse_order.page(params[:page]).per(5)
+    @invitations = current_user.invitations.includes(:project, project: :user).reverse_order.page(params[:page]).per(5)
   end
 end

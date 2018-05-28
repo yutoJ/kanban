@@ -2,7 +2,7 @@
   .row
     .col-md-6
       br
-      h1 = link_to @project.name, edit_project_path(@project)
+      h1 = link_to_if @project.user == current_user, @project.name, edit_project_path(@project)
     .col-md-6
       br
       .btn-toolbar.float-right
