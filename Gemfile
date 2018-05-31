@@ -45,6 +45,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
+  gem 'guard-rspec', require: false
 end
 
 group :development do

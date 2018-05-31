@@ -1,11 +1,7 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: %i[notification]
   def login
-    # nothing
-  end
-
-  def mypage
-    # nothing
+    redirect_to root_path if user_signed_in?
   end
 
   def notification

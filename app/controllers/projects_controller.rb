@@ -47,7 +47,7 @@ class ProjectsController < ApplicationController
   end
 
   def invite
-    @users = request.xhr? ? User.fuzzy_search(params[:search]) : User.all
+    @users = request.xhr? ? User.fuzzy_search(params[:search]) : User.all.reject { |u| u == current_user }
   end
 
   def logs
