@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Columns', type: :feature do
   describe 'new user who is not registered with Twitter' do
-    describe 'authentication success' do
+    describe 'project host user operation' do
       set_twitter_mock_auth
       before do
         visit 'users/auth/twitter'
@@ -45,9 +45,11 @@ RSpec.feature 'Columns', type: :feature do
         within(all('.card-header')[0]) do
           click_link '→'
         end
-        expect do
-          expect(left_column.reload.column_position.sequence_num).to eq 1
+        expect(left_column.reload.column_position.sequence_num).to eq 1
+        within(all('.card-header')[1]) do
+          click_link '←'
         end
+        expect(left_column.reload.column_position.sequence_num).to eq 2
       end
     end
   end

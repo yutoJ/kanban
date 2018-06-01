@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Cards', type: :feature do
   describe 'new user who is not registered with Twitter' do
-    describe 'authentication success' do
+    describe 'project host user operation' do
       set_twitter_mock_auth
       before do
         visit 'users/auth/twitter'
@@ -47,9 +47,11 @@ RSpec.feature 'Cards', type: :feature do
         within(all('.card-body')[0]) do
           find('.fa-arrow-right').click
         end
-        expect do
-          expect(@card.column).to eq right_column
+        expect(@card.reload.column).to eq right_column
+        within(all('.card-body')[1]) do
+          find('.fa-arrow-left').click
         end
+        expect(@card.reload.column).to eq @left_column
       end
     end
   end
