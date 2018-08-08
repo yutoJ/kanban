@@ -32,9 +32,14 @@ class ColumnsController < ApplicationController
   end
 
   def destroy
+    project = @column.project
+    unless @column.cards.empty?
+      redirect_to project_path(project), alert: t('activerecord.errors.messages.restrict_dependent_destroy.has_many', record: 'カード')
+      return
+    end
     @column.user = current_user
     @column.destroy
-    redirect_to project_path(@column.project), notice: t('notice.delete_column')
+    redirect_to project_path(project), notice: t('notice.delete_column')
   end
 
   private

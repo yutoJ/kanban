@@ -4,12 +4,12 @@
       .row
         .col-md-3.grid-center
           - unless card.first_column?(positions)
-            = link_to '', move_card_path(card, to: left_position(card.column_id, positions).id ), class: 'fa fa-arrow-left'
+            = link_to '', move_card_path(card, to: left_position(card.column_id, positions).column_id ), class: 'fa fa-arrow-left'
         .col-md-6.grid-center
           label = link_to card.name, edit_card_path(card)
         .col-md-3.grid-center
           - unless card.last_column?(positions)
-            = link_to '', move_card_path(card, to: right_position(card.column_id, positions).id ), class: 'fa fa-arrow-right'
+            = link_to '', move_card_path(card, to: right_position(card.column_id, positions).column_id ), class: 'fa fa-arrow-right'
       .row
         .col-md-6.grid-center
           - if card.due_date.present?
