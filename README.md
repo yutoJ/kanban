@@ -1,3 +1,3 @@
 # README
 
-This is a kanban app.
+This is sample app.
